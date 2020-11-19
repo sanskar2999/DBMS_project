@@ -8,6 +8,7 @@ import {
   Box,
   Hidden,
   IconButton,
+  Typography,
   Toolbar,
   makeStyles
 } from '@material-ui/core';
@@ -39,7 +40,7 @@ const TopBar = ({
       {...rest}
     >
       <Toolbar>
-        <RouterLink to="/">
+        <RouterLink to="/app/dashboard">
           <Logo />
         </RouterLink>
         <Box flexGrow={1} />
