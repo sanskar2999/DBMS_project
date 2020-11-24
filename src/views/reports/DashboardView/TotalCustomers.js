@@ -52,13 +52,13 @@ const TotalCustomers = ({ className, ...rest }) => {
               gutterBottom
               variant="h6"
             >
-              TOTAL CUSTOMERS
+              TOTAL USERS
             </Typography>
             <Typography
               color="textPrimary"
               variant="h3"
             >
-              1,600
+              24
             </Typography>
           </Grid>
           <Grid item>
@@ -72,7 +72,7 @@ const TotalCustomers = ({ className, ...rest }) => {
           display="flex"
           alignItems="center"
         >
-          <ArrowUpwardIcon className={classes.differenceIcon} />
+          {/* <ArrowUpwardIcon className={classes.differenceIcon} />
           <Typography
             className={classes.differenceValue}
             variant="body2"
@@ -84,7 +84,7 @@ const TotalCustomers = ({ className, ...rest }) => {
             variant="caption"
           >
             Since last month
-          </Typography>
+          </Typography> */}
         </Box>
       </CardContent>
     </Card>

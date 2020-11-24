@@ -52,13 +52,13 @@ const Budget = ({ className, ...rest }) => {
               gutterBottom
               variant="h6"
             >
-              BUDGET
+              CERTIFICATES
             </Typography>
             <Typography
               color="textPrimary"
               variant="h3"
             >
-              $24,000
+              24
             </Typography>
           </Grid>
           <Grid item>
@@ -72,8 +72,8 @@ const Budget = ({ className, ...rest }) => {
           display="flex"
           alignItems="center"
         >
-          <ArrowDownwardIcon className={classes.differenceIcon} />
-          <Typography
+          {/* <ArrowDownwardIcon className={classes.differenceIcon} /> */}
+          {/* <Typography
             className={classes.differenceValue}
             variant="body2"
           >
@@ -84,7 +84,7 @@ const Budget = ({ className, ...rest }) => {
             variant="caption"
           >
             Since last month
-          </Typography>
+          </Typography> */}
         </Box>
       </CardContent>
     </Card>

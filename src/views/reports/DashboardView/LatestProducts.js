@@ -22,43 +22,43 @@ import ArrowRightIcon from '@material-ui/icons/ArrowRight';
 const data = [
   {
     id: uuid(),
-    name: 'Dropbox',
-    imageUrl: '/static/images/products/product_1.png',
+    name: 'Template 1',
+    imageUrl: '/static/images/products/Certificate1.jpeg',
     updatedAt: moment().subtract(2, 'hours')
   },
   {
     id: uuid(),
-    name: 'Medium Corporation',
-    imageUrl: '/static/images/products/product_2.png',
+    name: 'Template 2',
+    imageUrl: '/static/images/products/Certificate2.jpeg',
     updatedAt: moment().subtract(2, 'hours')
   },
   {
     id: uuid(),
-    name: 'Slack',
-    imageUrl: '/static/images/products/product_3.png',
+    name: 'Template 3',
+    imageUrl: '/static/images/products/Certificate3.png',
     updatedAt: moment().subtract(3, 'hours')
   },
   {
     id: uuid(),
-    name: 'Lyft',
-    imageUrl: '/static/images/products/product_4.png',
+    name: 'Template 4',
+    imageUrl: '/static/images/products/Certificate4.png',
     updatedAt: moment().subtract(5, 'hours')
   },
   {
     id: uuid(),
-    name: 'GitHub',
-    imageUrl: '/static/images/products/product_5.png',
+    name: 'Template 5',
+    imageUrl: '/static/images/products/Certificate5.png',
     updatedAt: moment().subtract(9, 'hours')
   }
 ];
 
 const useStyles = makeStyles(({
   root: {
-    height: '100%'
+    height: '100%',
   },
   image: {
     height: 48,
-    width: 48
+    width: 52,
   }
 }));
 
@@ -73,7 +73,7 @@ const LatestProducts = ({ className, ...rest }) => {
     >
       <CardHeader
         subtitle={`${products.length} in total`}
-        title="Latest Products"
+        title="LATEST TEMPLATES USED"
       />
       <Divider />
       <List>

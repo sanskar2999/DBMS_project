@@ -2,6 +2,7 @@ import React from 'react';
 
 const Logo = (props) => {
   return (
+   
     <img
       alt="Logo"
       src="/static/images/logo.png"
@@ -9,6 +10,8 @@ const Logo = (props) => {
       width="50"
       {...props}
     />
+    
+     
   );
 };
 
