@@ -42,7 +42,7 @@ const items = [
     title: 'Users'
   },
   {
-    href: '/app/products',
+    href: '/app/templates',
     icon: ShoppingBagIcon,
     title: 'Generate/Create Templates'
   },
