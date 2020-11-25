@@ -23,7 +23,7 @@ const Account = () => {
   return (
     <Page
       className={classes.root}
-      title="Account"
+      // title="Account"
     >
       <Container maxWidth="lg">
         <Grid
