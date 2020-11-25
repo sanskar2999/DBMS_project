@@ -92,9 +92,10 @@ const TrafficByDevice = ({ className, ...rest }) => {
       className={clsx(classes.root, className)}
       {...rest}
     >
-      <CardHeader title="Traffic by Device" />
+      <CardHeader title="WILL BE UPDATED SOON" />
+
       <Divider />
-      <CardContent>
+      {/* <CardContent>
         <Box
           height={300}
           position="relative"
@@ -137,7 +138,7 @@ const TrafficByDevice = ({ className, ...rest }) => {
             </Box>
           ))}
         </Box>
-      </CardContent>
+      </CardContent> */}
     </Card>
   );
 };

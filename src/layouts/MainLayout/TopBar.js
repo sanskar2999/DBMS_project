@@ -8,7 +8,7 @@ import {
   makeStyles
 } from '@material-ui/core';
 import Logo from 'src/components/Logo';
-
+import Name from 'src/components/Name';
 const useStyles = makeStyles(({
   root: {},
   toolbar: {
@@ -28,6 +28,7 @@ const TopBar = ({ className, ...rest }) => {
       <Toolbar className={classes.toolbar}>
         <RouterLink to="/">
           <Logo />
+          <Name />
         </RouterLink>
       </Toolbar>
     </AppBar>

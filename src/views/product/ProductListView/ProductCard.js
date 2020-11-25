@@ -40,12 +40,14 @@ const ProductCard = ({ className, product, ...rest }) => {
         <Box
           display="flex"
           justifyContent="center"
-          mb={3}
+          mb={6}
         >
           <Avatar
             alt="Product"
             src={product.media}
             variant="square"
+            height= '100'
+            width='100'
           />
         </Box>
         <Typography

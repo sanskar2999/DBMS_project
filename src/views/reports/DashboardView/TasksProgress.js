@@ -45,13 +45,13 @@ const TasksProgress = ({ className, ...rest }) => {
               gutterBottom
               variant="h6"
             >
-              TASKS PROGRESS
+              TEMPLATES
             </Typography>
             <Typography
               color="textPrimary"
               variant="h3"
             >
-              75.5%
+              7
             </Typography>
           </Grid>
           <Grid item>
@@ -60,12 +60,12 @@ const TasksProgress = ({ className, ...rest }) => {
             </Avatar>
           </Grid>
         </Grid>
-        <Box mt={3}>
+        {/* <Box mt={3}>
           <LinearProgress
             value={75.5}
             variant="determinate"
           />
-        </Box>
+        </Box> */}
       </CardContent>
     </Card>
   );

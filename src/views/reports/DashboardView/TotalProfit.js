@@ -43,14 +43,14 @@ const TotalProfit = ({ className, ...rest }) => {
               gutterBottom
               variant="h6"
             >
-              TOTAL PROFIT
+              ORGANISATIONS
             </Typography>
             <Typography
               color="textPrimary"
               variant="h3"
             >
-              $23,200
-            </Typography>
+              15          
+              </Typography>
           </Grid>
           <Grid item>
             <Avatar className={classes.avatar}>

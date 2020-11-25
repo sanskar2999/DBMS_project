@@ -15,12 +15,12 @@ import {
 } from '@material-ui/core';
 
 const user = {
-  avatar: '/static/images/avatars/avatar_6.png',
-  city: 'Los Angeles',
-  country: 'USA',
-  jobTitle: 'Senior Developer',
-  name: 'Katarina Smith',
-  timezone: 'GTM-7'
+  avatar: '/static/images/animatedimage.jpg',
+  city: 'Indore',
+  country: 'India',
+  jobTitle: 'Developer',
+  name: 'Sambhav K Bhandari',
+  timezone: 'GMT 5.30'
 };
 
 const useStyles = makeStyles(() => ({
