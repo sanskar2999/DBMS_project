@@ -20,6 +20,7 @@ const useStyles = makeStyles((theme) => ({
     flexDirection: 'column'
   },
   avatar: {
+    objectFit: 'contain',
     width: '350px',
     height: '250px',
     display: 'flex',

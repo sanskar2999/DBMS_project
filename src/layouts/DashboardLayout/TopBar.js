@@ -23,7 +23,11 @@ const useStyles = makeStyles(() => ({
   avatar: {
     width: 60,
     height: 60
-  }
+  },
+  name: {
+    height: 100,
+    fontsize: '2.25rem',
+  },
 }));
 
 const TopBar = ({
@@ -43,8 +47,8 @@ const TopBar = ({
       <Toolbar>
         <RouterLink to="/app/dashboard">
           <Logo />
-          <Name />
         </RouterLink>
+        <Name className= {classes.name} />
         <Box flexGrow={1} />
         <Hidden mdDown>
           <IconButton color="inherit">
