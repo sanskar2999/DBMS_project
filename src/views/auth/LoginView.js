@@ -25,6 +25,15 @@ const useStyles = makeStyles((theme) => ({
   }
 }));
 
+// function myFunction() {
+//   var x = document.getElementById("myInput");
+//   if (x.type === "password") {
+//     x.type = "text";
+//   } else {
+//     x.type = "password";
+//   }
+// }
+
 const LoginView = () => {
   const classes = useStyles();
   const navigate = useNavigate();
@@ -83,7 +92,7 @@ const LoginView = () => {
                   container
                   spacing={3}
                 >
-                  <Grid
+                  {/* <Grid
                     item
                     xs={12}
                     md={6}
@@ -98,8 +107,8 @@ const LoginView = () => {
                     >
                       Login with Facebook
                     </Button>
-                  </Grid>
-                  <Grid
+                  </Grid> */}
+                  {/* <Grid
                     item
                     xs={12}
                     md={6}
@@ -113,19 +122,19 @@ const LoginView = () => {
                     >
                       Login with Google
                     </Button>
-                  </Grid>
+                  </Grid> */}
                 </Grid>
                 <Box
                   mt={3}
                   mb={1}
                 >
-                  <Typography
-                    align="center"
-                    color="textSecondary"
-                    variant="body1"
-                  >
-                    or login with email address
-                  </Typography>
+                    {/* <Typography
+                      align="center"
+                      color="textSecondary"
+                      variant="body1"
+                    >
+                      Login with email address
+                    </Typography> */}
                 </Box>
                 <TextField
                   error={Boolean(touched.email && errors.email)}
@@ -144,7 +153,8 @@ const LoginView = () => {
                   error={Boolean(touched.password && errors.password)}
                   fullWidth
                   helperText={touched.password && errors.password}
-                  label="Password"
+                    label="Password"
+                    id="myInput"
                   margin="normal"
                   name="password"
                   onBlur={handleBlur}
@@ -152,7 +162,9 @@ const LoginView = () => {
                   type="password"
                   value={values.password}
                   variant="outlined"
-                />
+                  />
+                  <input type="checkbox" onclick="myFunction()" style={{ marginRight: 5 + 'px' }} />
+                  <span>Show Password</span>
                 <Box my={2}>
                   <Button
                     color="primary"

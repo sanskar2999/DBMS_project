@@ -3,11 +3,9 @@ import React from 'react';
 const Name = (props) => {
   return (
    
-    <h3>
+    <span style={{fontSize:1.3+'em', fontFamily: 'cursive' , marginLeft:10+'px'}} >
         CERTIFY US
-    </h3>
-    
-     
+    </span>
   );
 };
 
