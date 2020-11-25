@@ -35,7 +35,7 @@ const Toolbar = ({ className, ...rest }) => {
         display="flex"
         justifyContent="flex-end"
       >
-        <Button className={classes.importButton}>
+        {/* <Button className={classes.importButton}>
           Import
         </Button>
         <Button className={classes.exportButton}>
@@ -46,7 +46,7 @@ const Toolbar = ({ className, ...rest }) => {
           variant="contained"
         >
           Add product
-        </Button>
+        </Button> */}
       </Box>
       <Box mt={3}>
         <Card>

@@ -19,6 +19,21 @@ const useStyles = makeStyles((theme) => ({
     display: 'flex',
     flexDirection: 'column'
   },
+  avatar: {
+    width: '350px',
+    height: '250px',
+    display: 'flex',
+    overflow: 'hidden',
+    position: 'relative',
+    fontsize: '1.25rem',
+    alignitems: 'center',
+    flexshrink: '0',
+    lineheight: '1',
+    userselect: 'none',
+    borderradius: '50%',
+    justifycontent: 'center'
+  },
+
   statsItem: {
     alignItems: 'center',
     display: 'flex'
@@ -42,19 +57,19 @@ const ProductCard = ({ className, product, ...rest }) => {
           justifyContent="center"
           mb={6}
         >
-          <Avatar
+          <Avatar className={classes.avatar}
             alt="Product"
             src={product.media}
             variant="square"
-            height= '100'
-            width='100'
+            height= '400'
+            width='400'
           />
         </Box>
         <Typography
           align="center"
           color="textPrimary"
           gutterBottom
-          variant="h4"
+          variant="h5"
         >
           {product.title}
         </Typography>
