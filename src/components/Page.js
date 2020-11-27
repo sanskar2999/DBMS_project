@@ -12,9 +12,9 @@ const Page = forwardRef(({
       ref={ref}
       {...rest}
     >
-      <Helmet>
+      {/* <Helmet>
         <title>{title}</title>
-      </Helmet>
+      </Helmet> */}
       {children}
     </div>
   );
