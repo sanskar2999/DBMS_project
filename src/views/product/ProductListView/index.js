@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState , useEffect} from 'react';
 import {
   Box,
   Container,
@@ -9,7 +9,6 @@ import { Pagination } from '@material-ui/lab';
 import Page from 'src/components/Page';
 import Toolbar from './Toolbar';
 import ProductCard from './ProductCard';
-import data from './data';
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -23,9 +22,26 @@ const useStyles = makeStyles((theme) => ({
   }
 }));
 
+var templates=[];
+
 const ProductList = () => {
   const classes = useStyles();
-  const [products] = useState(data);
+  useEffect(() => {
+    templates=[];
+  fetch('http://localhost:5000/templates/')
+  .then(resp => resp.json())
+  .then(data => data.map((images)=>{
+     console.log(images.url);
+      templates.push({
+        id: '12',
+        createdAt: '27/03/2019',
+        media: 'http://localhost:5000/'+images.url,
+        title: images.name,
+        totalDownloads: '594'
+      })
+  }))
+})
+  const [products] = useState(templates);
 
   return (
     <Page
