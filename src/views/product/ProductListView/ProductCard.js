@@ -83,49 +83,6 @@ const ProductCard = ({ className, product, ...rest }) => {
         </Typography>
       </CardContent>
       <Box flexGrow={1} />
-      <Divider />
-      <Box p={2}>
-        <Grid
-          container
-          justify="space-between"
-          spacing={2}
-        >
-          <Grid
-            className={classes.statsItem}
-            item
-          >
-            <AccessTimeIcon
-              className={classes.statsIcon}
-              color="action"
-            />
-            <Typography
-              color="textSecondary"
-              display="inline"
-              variant="body2"
-            >
-              Updated 2hr ago
-            </Typography>
-          </Grid>
-          <Grid
-            className={classes.statsItem}
-            item
-          >
-            <GetAppIcon
-              className={classes.statsIcon}
-              color="action"
-            />
-            <Typography
-              color="textSecondary"
-              display="inline"
-              variant="body2"
-            >
-              {product.totalDownloads}
-              {' '}
-              Downloads
-            </Typography>
-          </Grid>
-        </Grid>
-      </Box>
     </Card>
   );
 };

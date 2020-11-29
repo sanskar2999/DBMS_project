@@ -47,8 +47,9 @@ const TopBar = ({
       <Toolbar>
         <RouterLink to="/app/dashboard">
           <Logo />
+
         </RouterLink>
-        <Name className= {classes.name} />
+        <Name className="classes.name" />
         <Box flexGrow={1} />
         <Hidden mdDown>
           <IconButton color="inherit">

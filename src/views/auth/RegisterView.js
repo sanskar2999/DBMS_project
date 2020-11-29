@@ -2,6 +2,10 @@ import React from 'react';
 import { Link as RouterLink, useNavigate } from 'react-router-dom';
 import * as Yup from 'yup';
 import { Formik } from 'formik';
+import IconButton from '@material-ui/core/IconButton';
+import PhotoCamera from '@material-ui/icons/PhotoCamera';
+
+
 import {
   Box,
   Button,
@@ -10,6 +14,10 @@ import {
   FormHelperText,
   Link,
   TextField,
+  MenuItem,
+  FormControl,
+  Select,
+ InputLabel,
   Typography,
   makeStyles
 } from '@material-ui/core';
@@ -17,16 +25,31 @@ import Page from 'src/components/Page';
 
 const useStyles = makeStyles((theme) => ({
   root: {
-    backgroundColor: theme.palette.background.dark,
+    marginTop: 50+"px",
     height: '100%',
     paddingBottom: theme.spacing(3),
     paddingTop: theme.spacing(3)
-  }
+  },
+
+  formControl: {
+    margin: theme.spacing(1),
+    minWidth: 120,
+  },
+  selectEmpty: {
+    marginTop: theme.spacing(2),
+  },
 }));
 
 const RegisterView = () => {
   const classes = useStyles();
   const navigate = useNavigate();
+  
+  const [member, setMember] = React.useState('');
+
+  const handlechange = (event) => {
+    setMember(event.target.value);
+  };
+
 
   return (
     <Page
@@ -46,6 +69,7 @@ const RegisterView = () => {
               firstName: '',
               lastName: '',
               password: '',
+              member: '',
               policy: false
             }}
             validationSchema={
@@ -54,6 +78,7 @@ const RegisterView = () => {
                 firstName: Yup.string().max(255).required('First name is required'),
                 lastName: Yup.string().max(255).required('Last name is required'),
                 password: Yup.string().max(255).required('password is required'),
+                member: Yup.string().max(255).required('member is required'),
                 policy: Yup.boolean().oneOf([true], 'This field must be checked')
               })
             }
@@ -136,6 +161,36 @@ const RegisterView = () => {
                   value={values.password}
                   variant="outlined"
                 />
+          
+          <FormControl variant="outlined" className={classes.formControl}>
+        <InputLabel id="demo-simple-select-outlined-label">Member</InputLabel>
+        <Select
+          labelId="demo-simple-select-outlined-label"
+          id="demo-simple-select-outlined"
+          value={member}
+          onChange={handlechange}
+          label="Member"
+          name="member"
+        >
+          <MenuItem value="">
+            
+          </MenuItem>
+          <MenuItem value={10}>Admin  </MenuItem>
+          <MenuItem value={20}>Student</MenuItem>
+        </Select>
+      </FormControl>
+
+      <div style={{marginTop:10+"px",marginBottom: 10+"px",marginLeft: 20+"px"}}>
+      <span style={{fontSize:15+"px" , fontFamily:"monospace"}}>Upload Your Profile Picture:-</span> 
+      <input
+        accept="image/*"
+        type="file" 
+        style={{marginLeft:10+"px"}}
+      
+      /> 
+           </div>
+         
+      
                 <Box
                   alignItems="center"
                   display="flex"

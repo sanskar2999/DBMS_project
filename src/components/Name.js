@@ -5,7 +5,7 @@ import {
 const useStyles = makeStyles(() => ({
   name: {
     fontFamily: "Roboto, Helvetica, Arial, sans-serif",
-  },
+    },
 }));
 
 const Name = (props) => {

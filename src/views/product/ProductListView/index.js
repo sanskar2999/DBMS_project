@@ -34,10 +34,8 @@ const ProductList = () => {
      console.log(images.url);
       templates.push({
         id: '12',
-        createdAt: '27/03/2019',
         media: 'http://localhost:5000/'+images.url,
         title: images.name,
-        totalDownloads: '594'
       })
   }))
 })
