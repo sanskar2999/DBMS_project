@@ -40,10 +40,6 @@ const MainLayout = () => {
 
         <div className={classes.contentContainer}>
           <div className={classes.content}>
-            <div  >
-              <img src="static/images/logo.png" style={{ justifyItems:"center",marginLeft: 350+"px",width:"15%",marginTop: 20+"px", display: "flex"}}></img>
-              {/* <h3 style={{fontSize:60+"px", textAlign:"center",marginTop: -100+"px",marginLeft: 50+"px",textShadow:" 0 8.36px 5.896px #4287f5,0 -2px 1px #010a17"}}>CERTIFY US</h3> */}
-            </div>
             <Outlet />
           </div>
         </div>
