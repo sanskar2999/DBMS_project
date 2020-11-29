@@ -38,7 +38,7 @@ const ProductList = () => {
         title: images.name,
       })
   }))
-})
+},[])
   const [products] = useState(templates);
 
   return (

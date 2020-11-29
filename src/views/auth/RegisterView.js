@@ -97,6 +97,10 @@ const RegisterView = () => {
             }) => (
               <form onSubmit={handleSubmit}>
                 <Box mb={3}>
+                    <div  >
+                    <img src="static/images/logo.png" style={{ justifyItems:"center", justifyContent:"center", width:"30%", display: "flex"}}></img>
+                    {/* <h3 style={{fontSize:60+"px", textAlign:"center",marginTop: -100+"px",marginLeft: 50+"px",textShadow:" 0 8.36px 5.896px #4287f5,0 -2px 1px #010a17"}}>CERTIFY US</h3> */}
+                  </div>
                   <Typography
                     color="textPrimary"
                     variant="h2"
