@@ -15,6 +15,7 @@ import {
 import FacebookIcon from 'src/icons/Facebook';
 import GoogleIcon from 'src/icons/Google';
 import Page from 'src/components/Page';
+import { values, valuesIn } from 'lodash';
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -37,6 +38,7 @@ const useStyles = makeStyles((theme) => ({
 const LoginView = () => {
   const classes = useStyles();
   const navigate = useNavigate();
+  var axios = require('axios');
 
   return (
     <Page
@@ -59,8 +61,31 @@ const LoginView = () => {
               email: Yup.string().email('Must be a valid email').max(255).required('Email is required'),
               password: Yup.string().max(255).required('Password is required')
             })}
-            onSubmit={() => {
-              navigate('/app/dashboard', { replace: true });
+            onSubmit={(value) => {
+              console.log('hey');
+              console.log(value.email);
+              console.log(value.password);
+              var data = JSON.stringify({"email": value.email,"password": value.password});
+              
+              var config = {
+                method: 'post',
+                url: 'http://localhost:5000/user/login',
+                headers: { 
+                  'Content-Type': 'application/json'
+                },
+                data : data
+              };
+              
+              axios(config)
+              .then(function (response) {
+                console.log(JSON.stringify(response.data));
+                navigate('/app/dashboard', { replace: true });
+              })
+                .catch(function (error) {
+                  
+                console.log(error);
+              });
+              
             }}
           >
             {({
