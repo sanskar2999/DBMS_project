@@ -15,6 +15,7 @@ import {
 import FacebookIcon from 'src/icons/Facebook';
 import GoogleIcon from 'src/icons/Google';
 import Page from 'src/components/Page';
+import { values, valuesIn } from 'lodash';
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -26,9 +27,19 @@ const useStyles = makeStyles((theme) => ({
   }
 }));
 
+// function myFunction() {
+//   var x = document.getElementById("myInput");
+//   if (x.type === "password") {
+//     x.type = "text";
+//   } else {
+//     x.type = "password";
+//   }
+// }
+
 const LoginView = () => {
   const classes = useStyles();
   const navigate = useNavigate();
+  var axios = require('axios');
 
   return (
     <Page
@@ -51,8 +62,31 @@ const LoginView = () => {
               email: Yup.string().email('Must be a valid email').max(255).required('Email is required'),
               password: Yup.string().max(255).required('Password is required')
             })}
-            onSubmit={() => {
-              navigate('/app/dashboard', { replace: true });
+            onSubmit={(value) => {
+              console.log('hey');
+              console.log(value.email);
+              console.log(value.password);
+              var data = JSON.stringify({"email": value.email,"password": value.password});
+              
+              var config = {
+                method: 'post',
+                url: 'http://localhost:5000/user/login',
+                headers: { 
+                  'Content-Type': 'application/json'
+                },
+                data : data
+              };
+              
+              axios(config)
+              .then(function (response) {
+                console.log(JSON.stringify(response.data));
+                navigate('/app/dashboard', { replace: true });
+              })
+                .catch(function (error) {
+                  
+                console.log(error);
+              });
+              
             }}
           >
             {({
@@ -109,7 +143,8 @@ const LoginView = () => {
                   error={Boolean(touched.password && errors.password)}
                   fullWidth
                   helperText={touched.password && errors.password}
-                  label="Password"
+                    label="Password"
+                    id="myInput"
                   margin="normal"
                   name="password"
                   onBlur={handleBlur}
@@ -117,7 +152,9 @@ const LoginView = () => {
                   type="password"
                   value={values.password}
                   variant="outlined"
-                />
+                  />
+                  <input type="checkbox" onclick="myFunction()" style={{ marginRight: 5 + 'px' }} />
+                  <span>Show Password</span>
                 <Box my={2}>
                   <Button
                     color="primary"

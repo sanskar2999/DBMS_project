@@ -26,7 +26,7 @@ const useStyles = makeStyles(() => ({
   },
   name: {
     height: 100,
-    fontsize: '2.25rem',
+    fontsize: '10px',
   },
 }));
 
