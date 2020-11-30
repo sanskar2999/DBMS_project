@@ -9,6 +9,7 @@ import LoginView from 'src/views/auth/LoginView';
 import ProductListView from 'src/views/product/ProductListView';
 import RegisterView from 'src/views/auth/RegisterView';
 import SettingsView from 'src/views/settings/SettingsView';
+import CustomerLayout from 'src/layouts/CustomerLayout';
 
 const routes = [
   {
@@ -19,6 +20,16 @@ const routes = [
       { path: 'customers', element: <CustomerListView /> },
       { path: 'dashboard', element: <DashboardView /> },
       { path: 'templates', element: <ProductListView /> },
+      { path: 'settings', element: <SettingsView /> }
+    ]
+  },
+  {
+    path: 'customer',
+    element: <CustomerLayout />,
+    children: [
+      { path: 'account', element: <AccountView /> },
+      { path: 'dashboard', element: <DashboardView /> },
+      { path: 'certificatesEarned', element: <ProductListView /> },
       { path: 'settings', element: <SettingsView /> }
     ]
   },
