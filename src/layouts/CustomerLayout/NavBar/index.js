@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React, { useEffect , useState} from 'react';
 import { Link as RouterLink, useLocation } from 'react-router-dom';
 import PropTypes from 'prop-types';
 import {
@@ -23,12 +23,9 @@ import {
   Users as UsersIcon
 } from 'react-feather';
 import NavItem from './NavItem';
+import jwt_decode from "jwt-decode";
 
-const user = {
-  avatar: '/static/images/animatedimage.jpg',
-  jobTitle: 'Customer',
-  name: 'Sambhav K Bhandari'
-};
+var decoded;
 
 const items = [
   {
@@ -82,8 +79,23 @@ const useStyles = makeStyles(() => ({
 const NavBar = ({ onMobileClose, openMobile }) => {
   const classes = useStyles();
   const location = useLocation();
+  const [ user, setuser] = useState(0);
 
   useEffect(() => {
+    if(localStorage.getItem('token')!=null)
+    {
+    decoded = jwt_decode(localStorage.getItem('token'));
+    }
+    fetch('http://localhost:5000/customer/'+decoded.email)
+    .then(resp => resp.json())
+    .then(data => data.map((info)=>{
+      console.log(info.name);
+        setuser( {
+        avatar: 'http://localhost:5000/'+info.image,
+        jobTitle: 'Customer',
+        name: info.name
+      });
+    }))
     if (openMobile && onMobileClose) {
       onMobileClose();
     }

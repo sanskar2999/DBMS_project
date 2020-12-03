@@ -71,13 +71,10 @@ const LoginView = () => {
               
               axios(config)
               .then(function (response) {
-                console.log(JSON.stringify(response.data));
-                console.log(response.data.token);
                 if (response.data.message == "Auth successful") {
                   localStorage.clear();
                   localStorage.setItem("token", response.data.token);
                   localStorage.setItem("role", response.data.role);
-                  console.log(localStorage.getItem('token'));
                   if (response.data.role == "admin") {
                     navigate('/app/dashboard', { replace: true });
                   } else if(response.data.role == "customer") {
