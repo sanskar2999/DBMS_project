@@ -129,7 +129,7 @@ const RegisterView = () => {
                     
                     axios(config)
                       .then(function (res) {
-                        navigate('/app/dashboard', { replace: true });
+                        navigate('/customer/dashboard', { replace: true });
                         console.log(JSON.stringify(res.data));
                       })
                       .catch(function (error) {
