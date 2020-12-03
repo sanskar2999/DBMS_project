@@ -64,6 +64,11 @@ const ProfileDetails = ({ className, ...rest }) => {
     });
   };
 
+  function logout() {
+    localStorage.clear();
+    window.location.href = '/login';
+  }
+
   return (
     <form
       autoComplete="off"
@@ -171,6 +176,59 @@ const ProfileDetails = ({ className, ...rest }) => {
           </Grid>
         </CardContent>
         <Divider />
+        
+        <Box
+          display="flex"
+          justifyContent="left"
+          p={2}
+          flex="1"
+        >
+          <Button
+            color="primary"
+            variant="contained"
+            style={{marginRight:560+"px"}}
+          >
+            Save details
+          </Button>
+          <Button
+            color="primary"
+            variant="contained"
+            onClick={logout}
+          >
+            Logout
+          </Button> 
+        </Box>
+      </Card>
+      <br></br>
+      <Card >
+        <CardHeader
+          subheader="Update password"
+          title="Password"
+        />
+        <Divider />
+        <CardContent>
+          <TextField
+            fullWidth
+            label="Password"
+            margin="normal"
+            name="password"
+            onChange={handleChange}
+            type="password"
+            value={values.password}
+            variant="outlined"
+          />
+          <TextField
+            fullWidth
+            label="Confirm password"
+            margin="normal"
+            name="confirm"
+            onChange={handleChange}
+            type="password"
+            value={values.confirm}
+            variant="outlined"
+          />
+        </CardContent>
+        <Divider />
         <Box
           display="flex"
           justifyContent="flex-end"
@@ -180,7 +238,7 @@ const ProfileDetails = ({ className, ...rest }) => {
             color="primary"
             variant="contained"
           >
-            Save details
+            Update
           </Button>
         </Box>
       </Card>

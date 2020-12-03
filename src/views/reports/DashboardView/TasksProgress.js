@@ -1,4 +1,4 @@
-import React from 'react';
+import React,{useState, useEffect} from 'react';
 import clsx from 'clsx';
 import PropTypes from 'prop-types';
 import {
@@ -27,6 +27,19 @@ const useStyles = makeStyles(() => ({
 
 const TasksProgress = ({ className, ...rest }) => {
   const classes = useStyles();
+  const [values, setValues] = useState({
+    no_templates:0,
+  });
+  
+    useEffect(() => {
+      fetch('http://localhost:5000/templates')
+        .then(resp => resp.json())
+        .then(data => data.map((info) => {
+          setValues({
+            no_templates: data.length,
+          });
+        }))
+    },[])
 
   return (
     <Card
@@ -51,7 +64,7 @@ const TasksProgress = ({ className, ...rest }) => {
               color="textPrimary"
               variant="h3"
             >
-              7
+              {values.no_templates}
             </Typography>
           </Grid>
           <Grid item>

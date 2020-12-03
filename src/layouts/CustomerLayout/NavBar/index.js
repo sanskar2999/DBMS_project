@@ -19,7 +19,7 @@ import {
   Settings as SettingsIcon,
   Award,
   User as UserIcon,
-  UserPlus as UserPlusIcon,
+  LogOut as LogOutIcon,
   Users as UsersIcon
 } from 'react-feather';
 import NavItem from './NavItem';
@@ -43,11 +43,11 @@ const items = [
     icon: UserIcon,
     title: 'Manage Account'
   },
-  {
-    href: '/customer/settings',
-    icon: SettingsIcon,
-    title: 'Settings'
-  },
+  // {
+  //   href: '/customer/settings',
+  //   icon: LogOutIcon,
+  //   title: 'Logout'
+  // },
   // {
   //   href: '/login',
   //   icon: LockIcon,

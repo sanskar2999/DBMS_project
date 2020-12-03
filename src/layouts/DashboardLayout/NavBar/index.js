@@ -20,7 +20,7 @@ import {
   Settings as SettingsIcon,
   ShoppingBag as ShoppingBagIcon,
   User as UserIcon,
-  UserPlus as UserPlusIcon,
+  LogOut as LogOutIcon,
   Users as UsersIcon
 } from 'react-feather';
 import NavItem from './NavItem';
@@ -48,11 +48,11 @@ const items = [
     icon: UserIcon,
     title: 'Manage Account'
   },
-  {
-    href: '/app/settings',
-    icon: SettingsIcon,
-    title: 'Settings'
-  },
+  // {
+  //   href: '/login',
+  //   icon: LogOutIcon,
+  //   title: 'Logout / Signout'
+  // },
   // {
   //   href: '/login',
   //   icon: LockIcon,
@@ -148,6 +148,7 @@ const NavBar = ({ onMobileClose, openMobile }) => {
               key={item.title}
               title={item.title}
               icon={item.icon}
+              
             />
           ))}
         </List>
