@@ -16,7 +16,6 @@ import FacebookIcon from 'src/icons/Facebook';
 import GoogleIcon from 'src/icons/Google';
 import Page from 'src/components/Page';
 import { values, valuesIn } from 'lodash';
-// import { useAuth } from "./Auth";
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -28,20 +27,10 @@ const useStyles = makeStyles((theme) => ({
   }
 }));
 
-// function myFunction() {
-//   var x = document.getElementById("myInput");
-//   if (x.type === "password") {
-//     x.type = "text";
-//   } else {
-//     x.type = "password";
-//   }
-// }
-
 const LoginView = () => {
   const classes = useStyles();
   const navigate = useNavigate();
   var axios = require('axios');
-  // const { setAuthTokens } = useAuth();
   
 
   return (
