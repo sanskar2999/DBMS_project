@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState , useEffect } from 'react';
 import clsx from 'clsx';
 import PropTypes from 'prop-types';
 import {
@@ -12,21 +12,24 @@ import {
   TextField,
   makeStyles
 } from '@material-ui/core';
+import jwt_decode from "jwt-decode";
 
-const states = [
-  {
-    value: 'madhyapradesh',
-    label: 'Madhya Pradesh'
-  },
-  {
-    value: 'uttarpradesh',
-    label: 'Uttar Pradesh'
-  },
-  {
-    value: 'bihar',
-    label: 'Bihar'
-  }
-];
+var decoded;
+
+// const states = [
+//   {
+//     value: 'madhyapradesh',
+//     label: 'Madhya Pradesh'
+//   },
+//   {
+//     value: 'uttarpradesh',
+//     label: 'Uttar Pradesh'
+//   },
+//   {
+//     value: 'bihar',
+//     label: 'Bihar'
+//   }
+// ];
 
 const useStyles = makeStyles(() => ({
   root: {}
@@ -35,13 +38,24 @@ const useStyles = makeStyles(() => ({
 const ProfileDetails = ({ className, ...rest }) => {
   const classes = useStyles();
   const [values, setValues] = useState({
-    firstName: 'Sambhav K ',
-    lastName: 'Bhandari',
-    email: '123@gmail.com',
-    phone: '9989898989',
-    state: 'Madhya Pradesh',
-    country: 'India'
+    firstName: '',
+    email: '',
   });
+
+  useEffect(()=>{
+    if(localStorage.getItem('token')!=null)
+    {
+    decoded = jwt_decode(localStorage.getItem('token'));
+    }
+    fetch('http://localhost:5000/'+decoded.role+"/"+decoded.email)
+    .then(resp => resp.json())
+    .then(data => data.map((info)=>{
+        setValues( {
+          firstName: info.name,
+          email: info.email,
+      });
+    }))
+  },[])
 
   const handleChange = (event) => {
     setValues({
@@ -75,16 +89,15 @@ const ProfileDetails = ({ className, ...rest }) => {
             >
               <TextField
                 fullWidth
-                helperText="Please specify the first name"
-                label="First name"
-                name="firstName"
+                label="Name"
+                name="Name"
                 onChange={handleChange}
                 required
                 value={values.firstName}
                 variant="outlined"
               />
             </Grid>
-            <Grid
+            {/* <Grid
               item
               md={6}
               xs={12}
@@ -98,7 +111,7 @@ const ProfileDetails = ({ className, ...rest }) => {
                 value={values.lastName}
                 variant="outlined"
               />
-            </Grid>
+            </Grid> */}
             <Grid
               item
               md={6}
@@ -114,7 +127,7 @@ const ProfileDetails = ({ className, ...rest }) => {
                 variant="outlined"
               />
             </Grid>
-            <Grid
+            {/* <Grid
               item
               md={6}
               xs={12}
@@ -128,23 +141,8 @@ const ProfileDetails = ({ className, ...rest }) => {
                 value={values.phone}
                 variant="outlined"
               />
-            </Grid>
-            <Grid
-              item
-              md={6}
-              xs={12}
-            >
-              <TextField
-                fullWidth
-                label="Country"
-                name="country"
-                onChange={handleChange}
-                required
-                value={values.country}
-                variant="outlined"
-              />
-            </Grid>
-            <Grid
+            </Grid> */}
+            {/* <Grid
               item
               md={6}
               xs={12}
@@ -169,7 +167,7 @@ const ProfileDetails = ({ className, ...rest }) => {
                   </option>
                 ))}
               </TextField>
-            </Grid>
+            </Grid> */}
           </Grid>
         </CardContent>
         <Divider />

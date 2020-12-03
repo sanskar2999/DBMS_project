@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
-import { Link as RouterLink } from 'react-router-dom';
+import { Link as RouterLink , useNavigate } from 'react-router-dom';
 import clsx from 'clsx';
-import PropTypes from 'prop-types';
+import PropTypes, { func } from 'prop-types';
 import {
   AppBar,
   Badge,
@@ -17,6 +17,7 @@ import NotificationsIcon from '@material-ui/icons/NotificationsOutlined';
 import InputIcon from '@material-ui/icons/Input';
 import Logo from 'src/components/Logo';
 import Name from 'src/components/Name';
+import { LogOut } from 'react-feather';
 
 const useStyles = makeStyles(() => ({
   root: {},
@@ -30,6 +31,7 @@ const useStyles = makeStyles(() => ({
   },
 }));
 
+
 const TopBar = ({
   className,
   onMobileNavOpen,
@@ -37,6 +39,12 @@ const TopBar = ({
 }) => {
   const classes = useStyles();
   const [notifications] = useState([]);
+
+  function logout(){
+    localStorage.clear();
+    // useNavigate('/login', { replace: true });
+     window.location.href="/login";
+  }
 
   return (
     <AppBar
@@ -61,7 +69,10 @@ const TopBar = ({
               <NotificationsIcon />
             </Badge>
           </IconButton>
-          <IconButton color="inherit">
+          <IconButton 
+              color="inherit"
+              onClick={logout}
+              >
             <InputIcon />
           </IconButton>
         </Hidden>

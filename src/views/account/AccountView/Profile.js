@@ -1,4 +1,4 @@
-import React from 'react';
+import React ,{ useState , useEffect } from 'react';
 import PropTypes from 'prop-types';
 import clsx from 'clsx';
 import moment from 'moment';
@@ -13,6 +13,8 @@ import {
   Typography,
   makeStyles
 } from '@material-ui/core';
+import jwt_decode from "jwt-decode";
+var decoded;
 
 const user = {
   avatar: '/static/images/animatedimage.jpg',
@@ -33,6 +35,24 @@ const useStyles = makeStyles(() => ({
 
 const Profile = ({ className, ...rest }) => {
   const classes = useStyles();
+  const [ user, setuser] = useState(0);
+  useEffect(()=>{
+    if(localStorage.getItem('token')!=null)
+    {
+    decoded = jwt_decode(localStorage.getItem('token'));
+    }
+    fetch('http://localhost:5000/'+decoded.role+"/"+decoded.email)
+    .then(resp => resp.json())
+    .then(data => data.map((info)=>{
+        setuser( {
+          avatar: 'http://localhost:5000/'+info.image,
+          jobTitle: decoded.role,
+          name: info.name,
+          email: info.email,
+      });
+    }))
+  },[])
+
 
   return (
     <Card
@@ -56,19 +76,19 @@ const Profile = ({ className, ...rest }) => {
           >
             {user.name}
           </Typography>
-          <Typography
+          {/* <Typography
             color="textSecondary"
             variant="body1"
           >
             {`${user.city} ${user.country}`}
-          </Typography>
-          <Typography
+          </Typography> */}
+          {/* <Typography
             className={classes.dateText}
             color="textSecondary"
             variant="body1"
           >
             {`${moment().format('hh:mm A')} ${user.timezone}`}
-          </Typography>
+          </Typography> */}
         </Box>
       </CardContent>
       <Divider />
