@@ -16,6 +16,7 @@ import FacebookIcon from 'src/icons/Facebook';
 import GoogleIcon from 'src/icons/Google';
 import Page from 'src/components/Page';
 import { values, valuesIn } from 'lodash';
+// import { useAuth } from "./Auth";
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -40,6 +41,8 @@ const LoginView = () => {
   const classes = useStyles();
   const navigate = useNavigate();
   var axios = require('axios');
+  // const { setAuthTokens } = useAuth();
+  
 
   return (
     <Page
@@ -80,7 +83,20 @@ const LoginView = () => {
               axios(config)
               .then(function (response) {
                 console.log(JSON.stringify(response.data));
-                navigate('/app/dashboard', { replace: true });
+                console.log(response.data.token);
+                if (response.data.message == "Auth successful") {
+                  localStorage.clear();
+                  localStorage.setItem("token", response.data.token);
+                  localStorage.setItem("role", response.data.role);
+                  console.log(localStorage.getItem('token'));
+                  if (response.data.role == "admin") {
+                    navigate('/app/dashboard', { replace: true });
+                  } else if(response.data.role == "customer") {
+                    navigate('/customer/dashboard', { replace: true });
+                  }
+                } else {
+                  
+                }
               })
                 .catch(function (error) {
                   
