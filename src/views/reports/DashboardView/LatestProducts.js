@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import clsx from 'clsx';
 import PropTypes from 'prop-types';
 import { v4 as uuid } from 'uuid';
@@ -62,9 +62,25 @@ const useStyles = makeStyles(({
   }
 }));
 
+var templates = [];
+
 const LatestProducts = ({ className, ...rest }) => {
   const classes = useStyles();
-  const [products] = useState(data);
+  useEffect(() => {
+    templates=[];
+  fetch('http://localhost:5000/templates/')
+  .then(resp => resp.json())
+  .then(data => data.map((images)=>{
+    console.log(images.url);
+      templates.push({
+        id: '12',
+        media: 'http://localhost:5000/'+images.url,
+        title: images.name,
+      })
+  }))
+},[])
+  const [products] = useState(templates);
+  products.length = 5;
 
   return (
     <Card
@@ -73,7 +89,7 @@ const LatestProducts = ({ className, ...rest }) => {
     >
       <CardHeader
         subtitle={`${products.length} in total`}
-        title="LATEST TEMPLATES USED"
+        title="LATEST 5 TEMPLATES "
       />
       <Divider />
       <List>
@@ -86,12 +102,11 @@ const LatestProducts = ({ className, ...rest }) => {
               <img
                 alt="Product"
                 className={classes.image}
-                src={product.imageUrl}
+                src={product.media}
               />
             </ListItemAvatar>
             <ListItemText
-              primary={product.name}
-              secondary={`Updated ${product.updatedAt.fromNow()}`}
+              primary={product.title}
             />
             <IconButton
               edge="end"

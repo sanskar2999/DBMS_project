@@ -1,6 +1,6 @@
-import React from 'react';
 import clsx from 'clsx';
 import PropTypes from 'prop-types';
+import React, {useEffect,useState} from 'react';
 import {
   Avatar,
   Box,
@@ -34,6 +34,19 @@ const useStyles = makeStyles((theme) => ({
 
 const TotalCustomers = ({ className, ...rest }) => {
   const classes = useStyles();
+  const [values, setValues] = useState({
+    no_users:0,
+  });
+  
+    useEffect(() => {
+      fetch('http://localhost:5000/user')
+        .then(resp => resp.json())
+        .then(data => data.map((info) => {
+          setValues({
+            no_users: data.length,
+          });
+        }))
+    },[])
 
   return (
     <Card
@@ -58,7 +71,7 @@ const TotalCustomers = ({ className, ...rest }) => {
               color="textPrimary"
               variant="h3"
             >
-              24
+              {values.no_users}
             </Typography>
           </Grid>
           <Grid item>

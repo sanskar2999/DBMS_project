@@ -1,4 +1,4 @@
-import React from 'react';
+import React,{useState, useEffect} from 'react';
 import clsx from 'clsx';
 import PropTypes from 'prop-types';
 import {
@@ -25,6 +25,19 @@ const useStyles = makeStyles(() => ({
 
 const TotalProfit = ({ className, ...rest }) => {
   const classes = useStyles();
+  const [values, setValues] = useState({
+    no_admins:0,
+  });
+  
+    useEffect(() => {
+      fetch('http://localhost:5000/admin')
+        .then(resp => resp.json())
+        .then(data => data.map((info) => {
+          setValues({
+            no_admins: data.length,
+          });
+        }))
+    },[])
 
   return (
     <Card
@@ -49,7 +62,7 @@ const TotalProfit = ({ className, ...rest }) => {
               color="textPrimary"
               variant="h3"
             >
-              15          
+              {values.no_admins}       
               </Typography>
           </Grid>
           <Grid item>
