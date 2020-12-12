@@ -32,11 +32,11 @@ const TotalProfit = ({ className, ...rest }) => {
     useEffect(() => {
       fetch('http://localhost:5000/admin')
         .then(resp => resp.json())
-        .then(data => data.map((info) => {
+        .then(data => {
           setValues({
             no_admins: data.length,
           });
-        }))
+        })
     },[])
 
   return (

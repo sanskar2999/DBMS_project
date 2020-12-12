@@ -41,11 +41,11 @@ const TotalCustomers = ({ className, ...rest }) => {
     useEffect(() => {
       fetch('http://localhost:5000/user')
         .then(resp => resp.json())
-        .then(data => data.map((info) => {
+        .then(data => {
           setValues({
             no_users: data.length,
           });
-        }))
+        })
     },[])
 
   return (
