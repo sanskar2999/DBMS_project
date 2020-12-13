@@ -20,6 +20,7 @@ import {
   Settings as SettingsIcon,
   ShoppingBag as ShoppingBagIcon,
   User as UserIcon,
+  Layout as CertificateIcon,
   LogOut as LogOutIcon,
   Users as UsersIcon
 } from 'react-feather';
@@ -41,7 +42,12 @@ const items = [
   {
     href: '/app/templates',
     icon: ShoppingBagIcon,
-    title: 'Generate/Create Templates'
+    title: 'Templates'
+  },
+  {
+    href: '/app/generate',
+    icon: CertificateIcon,
+    title: 'Generate Certificate'
   },
   {
     href: '/app/account',

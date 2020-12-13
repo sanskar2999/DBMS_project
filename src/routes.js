@@ -10,6 +10,8 @@ import ProductListView from 'src/views/product/ProductListView';
 import RegisterView from 'src/views/auth/RegisterView';
 import SettingsView from 'src/views/settings/SettingsView';
 import CustomerLayout from 'src/layouts/CustomerLayout';
+import GenerateView from 'src/views/generate/GenerateView/index';
+import { element } from 'prop-types';
 
 const routes = [
   {
@@ -19,6 +21,7 @@ const routes = [
       { path: 'account', element: <AccountView /> },
       { path: 'customers', element: <CustomerListView /> },
       { path: 'dashboard', element: <DashboardView /> },
+      { path : 'generate', element: <GenerateView />},
       { path: 'templates', element: <ProductListView /> },
       { path: 'settings', element: <SettingsView /> }
     ]

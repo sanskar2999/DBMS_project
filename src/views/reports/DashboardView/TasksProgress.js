@@ -34,11 +34,11 @@ const TasksProgress = ({ className, ...rest }) => {
     useEffect(() => {
       fetch('http://localhost:5000/templates')
         .then(resp => resp.json())
-        .then(data => data.map((info) => {
+        .then(data =>  {
           setValues({
             no_templates: data.length,
           });
-        }))
+        })
     },[])
 
   return (
