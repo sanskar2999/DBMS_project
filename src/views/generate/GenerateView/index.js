@@ -6,7 +6,11 @@ import {
   TextField,
   makeStyles,
   Button,
-  IconButton
+  IconButton,
+  Card,
+  CardContent,
+  Typography,
+  CardHeader
 } from '@material-ui/core';
 import { Pagination } from '@material-ui/lab';
 import Page from 'src/components/Page';
@@ -30,6 +34,12 @@ const useStyles = makeStyles((theme) => ({
   },
   input: {
     display: 'none',
+  },
+  card:{
+    justifyItems:"center",
+    textAlign: "center", 
+    display: "block",
+    margin:"auto",
   }
 }));
 
@@ -91,6 +101,11 @@ const ProductList = () => {
             touched,
             values
           }) => (
+            <Card className={classes.card}>
+              <CardContent>
+              <Typography variant="h2" component="h2">
+                          Generate Certificates 
+                          </Typography>
             <form onSubmit={handleSubmit}>
                  
               <Box mt={3}>
@@ -131,6 +146,8 @@ const ProductList = () => {
               <br></br>
               <br></br>
             </form>
+            </CardContent>
+            </Card>
           )}
         </Formik>
       </Container>
