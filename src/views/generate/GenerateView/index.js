@@ -12,7 +12,8 @@ import { Pagination } from '@material-ui/lab';
 import Page from 'src/components/Page';
 import Toolbar from './Toolbar';
 import PhotoCamera from '@material-ui/icons/PhotoCamera';
-
+import * as Yup from 'yup';
+import { Formik } from 'formik';
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -36,103 +37,102 @@ var templates=[];
 
 const ProductList = () => {
   const classes = useStyles();
-  useEffect(() => {
-    templates=[];
-  fetch('http://localhost:5000/templates/')
-  .then(resp => resp.json())
-  .then(data => data.map((images)=>{
-     console.log(images.url);
-      templates.push({
-        id: '12',
-        media: 'http://localhost:5000/'+images.url,
-        title: images.name,
-      })
-  }))
-},[])
-  const [products] = useState(templates);
+  var file;
 
-  handleOpenDialog = (e) => {
-    // Note that the ref is set async, so it might be null at some point
-    if (buttonRef.current) {
-      buttonRef.current.open(e)
-    }
-  }
+  function _handleImageChange(e) {
+    e.preventDefault();
 
-  handleOnFileLoad = (data) => {
-    console.log('---------------------------')
-    console.log(data)
-    console.log('---------------------------')
-  }
+    let reader = new FileReader();
+    let image = e.target.files[0];
 
-  handleOnError = (err, file, inputElem, reason) => {
-    console.log(err)
-  }
-
-  handleOnRemoveFile = (data) => {
-    console.log('---------------------------')
-    console.log(data)
-    console.log('---------------------------')
-  }
-
-  handleRemoveFile = (e) => {
-    // Note that the ref is set async, so it might be null at some point
-    if (buttonRef.current) {
-      buttonRef.current.removeFile(e)
+    reader.onloadend = () => {
+      file = image;
     }
 
+    reader.readAsDataURL(image)
+  }
+  
   return (
     <Page
       className={classes.root}
     >
-      <Container maxWidth={false}>
-        
-        <Box mt={3}>
-           
-        <TextField
-          label="Signature"
-          id="outlined-margin-normal"
-        
-          className={classes.textField}
-          helperText="Signature : Your Name "
-          margin="normal"
-          variant="outlined"
-        />
-        </Box>
+      <Container maxWidth="sm">
+        <Formik
+            
+          onSubmit={(value) => {
+            console.log(file);
+            var axios = require('axios');
+            var data = new FormData();
+            data.append('file', file);
+            data.append('template_url', 'uploads/2020-12-13T04-27-09.039ZWhite Geometric Design Participation Certificate (1)-1.png');
+            data.append('admin_email', 'shivam123@gmail.com');
 
-        
-        <Box mt={3}>
-           
+            var config = {
+              method: 'post',
+              url: 'http://localhost:5000/generateCertificates/create',
+              data: data
+            };
 
-        <div className={classes.root}>
-      <input
-        accept="image/*"
-        className={classes.input}
-        id="contained-button-file"
-        multiple
-        type="file"
-      />
-      <label htmlFor="contained-button-file">
-        <Button variant="contained" color="primary" component="span">
-          Upload CSV 
-        </Button>
-      </label>
-  
-    </div>
-        </Box>
-
-        <Box
-          display="left"
-          justifyContent="flex-end"
-          p={2}
+            axios(config)
+              .then(function (response) {
+                console.log(JSON.stringify(response.data));
+              })
+              .catch(function (error) {
+                console.log(error);
+              });
+          }}
         >
-          <Button
-            color="secondary"
-            variant="contained"
-          >
-            Submit
-          </Button>
-        </Box>
-        
+          {({
+            errors,
+            handleBlur,
+            handleChange,
+            handleSubmit,
+            isSubmitting,
+            touched,
+            values
+          }) => (
+            <form onSubmit={handleSubmit}>
+                 
+              <Box mt={3}>
+           
+                <TextField
+                  label="Signature"
+                  id="outlined-margin-normal"
+                  name="signature"
+                  className={classes.textField}
+                  helperText="Signature : Your Name "
+                  margin="normal"
+                  variant="outlined"
+                />
+              </Box>
+              <div style={{ marginTop: 10 + "px", marginBottom: 10 + "px", marginLeft: 20 + "px" }}>
+                <span style={{ fontSize: 15 + "px", fontFamily: "monospace" }}><b>Upload Your CSV File:-</b></span>
+                <input
+                  accept=".csv, application/vnd.openxmlformats-officedocument.spreadsheetml.sheet, application/vnd.ms-excel"
+                  type="file"
+                  style={{ marginLeft: 10 + "px" }}
+                  onChange={_handleImageChange}
+                  name="csvfile"
+                />
+              </div>
+              <Box my={2}>
+                <Button
+                  color="primary"
+                  disabled={isSubmitting}
+                  fullWidth
+                  size="large"
+                  type="submit"
+                  variant="contained"
+                >
+                  Submit
+                  </Button>
+              </Box>
+                 
+              <br></br>
+              <br></br>
+            </form>
+          )}
+        </Formik>
       </Container>
     </Page>
   );

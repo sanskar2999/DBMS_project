@@ -41,7 +41,6 @@ const RegisterView = () => {
   const classes = useStyles();
   const navigate = useNavigate();
   var FormData = require('form-data');
-  var fs = require('fs').promises;
   var file;
 
   const [member, setMember] = React.useState('');
