@@ -12,6 +12,7 @@ import SettingsView from 'src/views/settings/SettingsView';
 import CustomerLayout from 'src/layouts/CustomerLayout';
 import GenerateView from 'src/views/generate/GenerateView/index';
 import { element } from 'prop-types';
+import LandingPage from 'src/views/landingPage/index';
 
 const routes = [
   {
@@ -40,6 +41,7 @@ const routes = [
     path: '/',
     element: <MainLayout />,
     children: [
+      { path: 'home', element:<LandingPage/>},
       { path: 'login', element: <LoginView /> },
       { path: 'register', element: <RegisterView /> },
       { path: '/', element: <Navigate to="/login" /> },
