@@ -18,6 +18,7 @@ import Toolbar from './Toolbar';
 import PhotoCamera from '@material-ui/icons/PhotoCamera';
 import * as Yup from 'yup';
 import { Formik } from 'formik';
+import jwt_decode from "jwt-decode";
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -43,11 +44,20 @@ const useStyles = makeStyles((theme) => ({
   }
 }));
 
-var templates=[];
+var templates = [];
+var admin_emailId;
+var decoded;
 
 const ProductList = () => {
+  
   const classes = useStyles();
   var file;
+  var template;
+  const [signature, setMember] = React.useState('');
+
+  const handlechange = (event) => {
+    setMember(event.target.value);
+  };
 
   function _handleImageChange(e) {
     e.preventDefault();
@@ -61,6 +71,19 @@ const ProductList = () => {
 
     reader.readAsDataURL(image)
   }
+
+  function _handleTemplateChange(e) {
+    e.preventDefault();
+
+    let reader = new FileReader();
+    let image = e.target.files[0];
+
+    reader.onloadend = () => {
+      template = image;
+    }
+
+    reader.readAsDataURL(image)
+  }
   
   return (
     <Page
@@ -70,12 +93,20 @@ const ProductList = () => {
         <Formik
             
           onSubmit={(value) => {
+            if (localStorage.getItem('token') != null) {
+              decoded = jwt_decode(localStorage.getItem('token'));
+            }
+            admin_emailId = decoded.email;
             console.log(file);
             var axios = require('axios');
             var data = new FormData();
+            console.log(signature);
+            console.log(admin_emailId);
+            console.log(decoded.email);
+            data.append('signature', signature);
             data.append('file', file);
             data.append('template_url', 'uploads/2020-12-13T04-27-09.039ZWhite Geometric Design Participation Certificate (1)-1.png');
-            data.append('admin_email', 'shivam123@gmail.com');
+            data.append('admin_email', admin_emailId);
 
             var config = {
               method: 'post',
@@ -103,50 +134,54 @@ const ProductList = () => {
           }) => (
             <Card className={classes.card}>
               <CardContent>
-              <Typography variant="h2" component="h2">
-                          Generate Certificates 
+                <Typography variant="h2" component="h2">
+                  Generate Certificates
                           </Typography>
-            <form onSubmit={handleSubmit}>
+                <form onSubmit={handleSubmit}>
                  
-              <Box mt={3}>
-           
-                <TextField
-                  label="Signature"
-                  id="outlined-margin-normal"
-                  name="signature"
-                  className={classes.textField}
-                  helperText="Signature : Your Name "
-                  margin="normal"
-                  variant="outlined"
-                />
-              </Box>
-              <div style={{ marginTop: 10 + "px", marginBottom: 10 + "px", marginLeft: 20 + "px" }}>
-                <span style={{ fontSize: 15 + "px", fontFamily: "monospace" }}><b>Upload Your CSV File:-</b></span>
-                <input
-                  accept=".csv, application/vnd.openxmlformats-officedocument.spreadsheetml.sheet, application/vnd.ms-excel"
-                  type="file"
-                  style={{ marginLeft: 10 + "px" }}
-                  onChange={_handleImageChange}
-                  name="csvfile"
-                />
-              </div>
-              <Box my={2}>
-                <Button
-                  color="primary"
-                  disabled={isSubmitting}
-                  fullWidth
-                  size="large"
-                  type="submit"
-                  variant="contained"
-                >
-                  Submit
+                  <Box mt={3}>
+
+                    
+
+                    <TextField
+                      label="signature"
+                      value={signature}
+                      id="outlined-margin-normal"
+                      name="signature"
+                      className={classes.textField}
+                      onChange={handlechange}
+                      helperText="Signature : Your Name "
+                      margin="normal"
+                      variant="outlined"
+                    />
+                  </Box>
+                  <div style={{ marginTop: 10 + "px", marginBottom: 10 + "px", marginLeft: 20 + "px" }}>
+                    <span style={{ fontSize: 15 + "px", fontFamily: "monospace" }}><b>Upload Your CSV File:-</b></span>
+                    <input
+                      accept=".csv, application/vnd.openxmlformats-officedocument.spreadsheetml.sheet, application/vnd.ms-excel"
+                      type="file"
+                      style={{ marginLeft: 10 + "px" }}
+                      onChange={_handleImageChange}
+                      name="csvfile"
+                    />
+                  </div>
+                  <Box my={2}>
+                    <Button
+                      color="primary"
+                      disabled={isSubmitting}
+                      fullWidth
+                      size="large"
+                      type="submit"
+                      variant="contained"
+                    >
+                      Submit
                   </Button>
-              </Box>
+                  </Box>
                  
-              <br></br>
-              <br></br>
-            </form>
-            </CardContent>
+                  <br></br>
+                  <br></br>
+                </form>
+              </CardContent>
             </Card>
           )}
         </Formik>
