@@ -10,14 +10,14 @@ import { ReactComponent as ChevronDownIcon } from "feather-icons/dist/icons/chev
 import { ReactComponent as SvgDecoratorBlob1 } from "src/images/svg-decorator-blob-7.svg";
 import { ReactComponent as SvgDecoratorBlob2 } from "src/images/svg-decorator-blob-8.svg";
 
-const Subheading = tw(SubheadingBase)`mb-4 text-center`;
+const Subheading = tw(SubheadingBase)`mb-4 text-center text-gray-800`;
 const Heading = tw(SectionHeading)`w-full`;
-const Description = tw(SectionDescription)`w-full text-center`;
+const Description = tw(SectionDescription)`w-full text-center text-gray-200`;
 
 const Column = tw.div`flex flex-col items-center`;
-const HeaderContent = tw.div``;
 
-const FAQSContainer = tw.dl`mt-12 max-w-4xl relative`;
+const HeaderContent = tw.div``;
+const FAQSContainer = tw.dl`mt-12 max-w-4xl relative `;
 const FAQ = tw.div`cursor-pointer select-none mt-5 px-8 sm:px-10 py-5 sm:py-4 rounded-lg text-gray-800 hover:text-gray-900 bg-gray-200 hover:bg-gray-300 transition duration-300`;
 const Question = tw.dt`flex justify-between items-center`;
 const QuestionText = tw.span`text-lg lg:text-xl font-semibold`;
@@ -41,27 +41,31 @@ const DecoratorBlob2 = styled(SvgDecoratorBlob2)`
 export default ({
   subheading = "FAQS",
   heading = "You have Questions ?",
-  description = "And we have got answers to all of them. Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
+  description = "If you don't see an answer to your question, you can send us an email or call us",
   faqs = [
     {
-      question: "Is lunch provided free of cost ?",
+      question: "What kind of Certificates can I send ? ",
       answer:
-        "Yes, it is, if you have a membership with us. Otherwise it is charged as per the menu. Some limits do apply as to how much items can be included in your lunch. This limit is enough for any one person and merely exists to discourage abusal of the system."
+        "Any kind of Certificate like participation, mentorship, ambassadorship, volenteering, honorary certificates for judges, speakers, Internship letter etc can be sent through our service."
     },
     {
-      question: "Do you have 2 Bedroom suites ?",
-      answer:
-        "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat."
+      question: "Can I send Certificates for any kind of event?      ",
+      answer:  "  Yes, you can send Certificates of any kind of event or competition like race, charity work, tech events, cultural events, etc."
     },
     {
-      question: "Are Wi-Fi costs included in the price ?",
+      question: "What format of image do I have to upload for the certificate template ?      ",
       answer:
-        "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat."
+        "Curretly, we are having small number of templates, will be coming soon with best templates."
     },
     {
-      question: "Where can I reach you for support ?",
+      question: "What format of file do I have to upload for submitting the details for generating certificates ",
       answer:
-        "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat."
+        "It must be CSV file having ',' as delimitor"
+    },
+    {
+      question: "Do I have to design my own Certificate or do I have to use your design?      ",
+      answer:
+        "You can design yourself and send us the Certificate template. If you have a designer on your team, it would be awesome otherwise you can design on canva.com which has many certificate templates."
     }
   ]
 }) => {
@@ -73,7 +77,7 @@ export default ({
   };
 
   return (
-    <Container>
+    <Container style={{backgroundColor:"#45add9"}} >
       <ContentWithPaddingXl>
         <Column>
           <HeaderContent>

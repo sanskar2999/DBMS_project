@@ -37,7 +37,7 @@ const Card = styled.div`
   .imageContainer {
     ${tw`border text-center rounded-full p-5 flex-shrink-0`}
     img {
-      ${tw`w-6 h-6`}
+      ${tw`w-40 h-40`}
     }
   }
 
@@ -58,7 +58,7 @@ const DecoratorBlob = styled(SvgDecoratorBlob3)`
   ${tw`pointer-events-none absolute right-0 bottom-0 w-64 opacity-25 transform translate-x-32 translate-y-48 `}
 `;
 
-export default ({ cards = null, heading = "Amazing Features", subheading = "Features", description = "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua." }) => {
+export default ({ cards = null, heading = "Amazing Features", subheading = "Features", description = "Features are must without which nothing can be bought or can be sold off in this world" }) => {
   /*
    * This componets has an array of object denoting the cards defined below. Each object in the cards array can have the key (Change it according to your need, you can also add more objects to have more cards in this feature component) or you can directly pass this using the cards prop:
    *  1) imageSrc - the image shown at the top of the card
@@ -71,34 +71,49 @@ export default ({ cards = null, heading = "Amazing Features", subheading = "Feat
     {
       imageSrc: ShieldIconImage,
       title: "Secure",
-      description: "We strictly only deal with vendors that provide top notch security."
+      description: "Security is must, We assure you for that."
     },
-    { imageSrc: SupportIconImage, title: "24/7 Support" },
-    { imageSrc: CustomizeIconImage, title: "Customizable" },
-    { imageSrc: ReliableIconImage, title: "Reliable" },
-    { imageSrc: FastIconImage, title: "Fast" },
-    { imageSrc: SimpleIconImage, title: "Easy" }
+    { imageSrc: SupportIconImage, 
+      title: "24/7 Support",
+      description: "We are available for 24*7, whenever in need we are there for you" 
+  },
+    { imageSrc: CustomizeIconImage, 
+      title: "Customizable" ,
+      description: "Templates and Signatures can be customized according to the needs"
+    },
+    { imageSrc: ReliableIconImage, 
+      title: "Reliable" ,
+      description: "Your certificates are safe with us, we won't compromise in reliability of the user"
+    },
+    { imageSrc: FastIconImage, 
+      title: "Fast" ,
+      description: "Fast issueing of certificates and sending over the mail to every customers  "
+     },
+    { imageSrc: SimpleIconImage, 
+      title: "Easy",
+      description: "Easy to operate and one click download thorugh Email"
+    }
   ];
 
   if (!cards) cards = defaultCards;
 
   return (
-    <Container>
+    <Container id="features">
       <ThreeColumnContainer>
         {subheading && <Subheading>{subheading}</Subheading>}
         <Heading>{heading}</Heading>
         {description && <Description>{description}</Description>}
         <VerticalSpacer />
         {cards.map((card, i) => (
-          <Column key={i}>
-            <Card>
+          <Column key={i} style={{marginTop:"25px"}}>
+            <Card style={{border:"1px solid #000",borderRadius:"25px" ,backgroundColor:"#a8e5f0" ,boxShadow:"inset 5px 5px 20px #fff, 4px 4px 15px #000" }}>
               <span className="imageContainer">
-                <img src={card.imageSrc || defaultCardImage} alt="" />
+                <img src={card.imageSrc || defaultCardImage} alt="" style={{width:"50px",color:"white"}}/>
               </span>
               <span className="textContainer">
                 <span className="title">{card.title || "Fully Secure"}</span>
                 <p className="description">
-                  {card.description || "Lorem ipsum donor amet siti ceali ut enim ad minim veniam, quis nostrud."}
+                  {card.description }
                 </p>
               </span>
             </Card>
