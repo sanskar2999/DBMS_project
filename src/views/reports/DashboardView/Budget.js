@@ -13,6 +13,7 @@ import {
 } from '@material-ui/core';
 import ArrowDownwardIcon from '@material-ui/icons/ArrowDownward';
 import MoneyIcon from '@material-ui/icons/Money';
+import jwt_decode from "jwt-decode";
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -36,19 +37,28 @@ const useStyles = makeStyles((theme) => ({
 
 const Budget = ({ className, ...rest }) => {
   const classes = useStyles();
-// const [values, setValues] = useState({
-//   no_users:0,
-// });
+  var role = "";
+  var email_id = "";
+  var decoded;
+const [values, setValues] = useState({
+  no_users:0,
+});
 
-//   useEffect(() => {
-//     fetch('http://localhost:5000/user')
-//       .then(resp => resp.json())
-//       .then(data => data.map((info) => {
-//         setValues({
-//           no_users: data.length,
-//         });
-//       }))
-//   },[])
+  useEffect(() => {
+    role = localStorage.getItem('role');
+    console.log(role);
+    decoded = jwt_decode(localStorage.getItem('token'));
+    email_id = decoded.email;
+    console.log(email_id);
+    
+    fetch(`http://localhost:5000/${role}/${email_id}`)
+      .then(resp => resp.json())
+      .then(data => data.map((info) => {
+        setValues({
+          no_users: info.certificates.length,
+        });
+      }))
+  },[])
   
 
   return (
@@ -74,7 +84,7 @@ const Budget = ({ className, ...rest }) => {
               color="textPrimary"
               variant="h3"
             >
-              To be done
+              {values.no_users}
             </Typography>
           </Grid>
           <Grid item>
