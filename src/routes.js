@@ -44,7 +44,7 @@ const routes = [
       { path: 'home', element:<LandingPage/>},
       { path: 'login', element: <LoginView /> },
       { path: 'register', element: <RegisterView /> },
-      { path: '/', element: <Navigate to="/login" /> },
+      { path: '/', element: <Navigate to="/home" /> },
       { path: '*', element: <Navigate to="/404" /> }
     ]
   }
