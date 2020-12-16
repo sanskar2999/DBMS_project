@@ -5,6 +5,7 @@ import styled from "styled-components";
 import { css } from "styled-components/macro"; //eslint-disable-line
 
 import useAnimatedNavToggler from "../../helpers/useAnimatedNavToggler.js";
+import LoginView from 'src/views/auth/LoginView';
 
 import logo from "src/images/logo.svg";
 import { ReactComponent as MenuIcon } from "feather-icons/dist/icons/menu.svg";
@@ -70,16 +71,17 @@ export default ({ roundedHeaderButton = false, logoLink, links, className, colla
    * changing the defaultLinks variable below below.
    * If you manipulate links here, all the styling on the links is already done for you. If you pass links yourself though, you are responsible for styling the links or use the helper styled components that are defined here (NavLink)
    */
+
   const defaultLinks = [
-    <NavLinks key={1}>
+    <NavLinks key={2}>
       <NavLink href="/#">About</NavLink>
       <NavLink href="/#">Blog</NavLink>
       <NavLink href="/#">Pricing</NavLink>
       <NavLink href="/#">Contact Us</NavLink>
-      <NavLink href="/#" tw="lg:ml-12!">
+      <NavLink href="/login" tw="lg:ml-12!" >
         Login
       </NavLink>
-      <PrimaryLink css={roundedHeaderButton && tw`rounded-full`}href="/#">Sign Up</PrimaryLink>
+      <PrimaryLink css={ tw`rounded-full`} href="/register">Sign Up</PrimaryLink>
     </NavLinks>
   ];
 
@@ -93,20 +95,19 @@ export default ({ roundedHeaderButton = false, logoLink, links, className, colla
     </LogoLink>
   );
 
-  logoLink = logoLink || defaultLogoLink;
-  links = links || defaultLinks;
+
 
   return (
     <Header className={className || "header-light"}>
       <DesktopNavLinks css={collapseBreakpointCss.desktopNavLinks}>
-        {logoLink}
-        {links}
+        {defaultLogoLink}
+        {defaultLinks}
       </DesktopNavLinks>
 
       <MobileNavLinksContainer css={collapseBreakpointCss.mobileNavLinksContainer}>
-        {logoLink}
+        {defaultLogoLink}
         <MobileNavLinks initial={{ x: "150%", display: "none" }} animate={animation} css={collapseBreakpointCss.mobileNavLinks}>
-          {links}
+          {defaultLinks}
         </MobileNavLinks>
         <NavToggle onClick={toggleNavbar} className={showNavLinks ? "open" : "closed"}>
           {showNavLinks ? <CloseIcon tw="w-6 h-6" /> : <MenuIcon tw="w-6 h-6" />}

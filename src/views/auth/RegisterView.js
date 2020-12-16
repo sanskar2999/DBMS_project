@@ -23,10 +23,12 @@ import Page from 'src/components/Page';
 
 const useStyles = makeStyles((theme) => ({
   root: {
-    marginTop: 50+"px",
+    backgroundColor: theme.palette.background.dark,
+    // marginTop: 50+"px",
     height: '100%',
+    marginBottom: 0+"px",
     paddingBottom: theme.spacing(3),
-    paddingTop: theme.spacing(3)
+    paddingTop: theme.spacing(2),
   },
   formControl: {
     margin: theme.spacing(1),
@@ -170,7 +172,7 @@ const RegisterView = () => {
               <form onSubmit={handleSubmit}>
                 <Box mb={3}>
                     <div  >
-                    <img src="static/images/logo.png" style={{ justifyItems:"center", justifyContent:"center", width:"30%", display: "block",margin:"auto"}}></img>
+                    <img src="static/images/logo.png" style={{ justifyItems:"center", justifyContent:"center", width:"30%", display: "block",margin:"auto", marginTop:20+"px"}}></img>
                     {/* <h3 style={{fontSize:60+"px", textAlign:"center",marginTop: -100+"px",marginLeft: 50+"px",textShadow:" 0 8.36px 5.896px #4287f5,0 -2px 1px #010a17"}}>CERTIFY US</h3> */}
                   </div>
                   <br></br>
@@ -288,7 +290,6 @@ const RegisterView = () => {
                   <Box my={2}>
                     <Button
                       color="primary"
-                      disabled={isSubmitting}
                       fullWidth
                       size="large"
                       type="submit"
@@ -311,8 +312,8 @@ const RegisterView = () => {
                       Sign in
                   </Link>
                 </Typography>
-                <br></br>
-                <br></br>
+                <br>
+                </br>
               </form>
             )}
           </Formik>

@@ -1,4 +1,4 @@
-import React, { useState , useEffect} from 'react';
+import React, { useState, useEffect } from 'react';
 import {
   Box,
   Container,
@@ -49,6 +49,7 @@ var admin_emailId;
 var decoded;
 
 const ProductList = () => {
+
   
   const classes = useStyles();
   var file;
@@ -71,6 +72,7 @@ const ProductList = () => {
 
     reader.readAsDataURL(image)
   }
+
 
   function _handleTemplateChange(e) {
     e.preventDefault();
@@ -140,8 +142,7 @@ const ProductList = () => {
                 <form onSubmit={handleSubmit}>
                  
                   <Box mt={3}>
-
-                    
+                  
 
                     <TextField
                       label="signature"
