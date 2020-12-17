@@ -76,7 +76,7 @@ export default ({
   imageRounded = true,
   imageBorder = false,
   imageShadow = false,
-  subheading = "Team",
+  subheading = "",
   heading = "Our Team.",
   description = " Talent wins games, but teamwork and intelligence win championships.",
   textOnLeft = false,
@@ -112,14 +112,14 @@ export default ({
   const [sliderRef, setSliderRef] = useState(null);
 
   return (
-    <Container>
+    <Container id="ourteam">
       <ContentWithPaddingXl>
         <Row>
           <ImageColumn>
             <Image src={imageSrc} imageBorder={imageBorder} imageShadow={imageShadow} imageRounded={imageRounded} />
           </ImageColumn>
           <TextColumn textOnLeft={textOnLeft}>
-            <Subheading>{subheading}</Subheading>
+            {/* <Subheading>{subheading}</Subheading> */}
             <Heading>{heading}</Heading>
             <Description>{description}</Description>
             <TestimonialSlider arrows={false} ref={setSliderRef}>

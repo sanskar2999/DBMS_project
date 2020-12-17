@@ -37,11 +37,11 @@ const CustomerCompany = tw.p`mt-1 text-sm text-gray-500`
 
 
 export default ({
-  heading = "Best,Faster & Cheaper Certification.",
-  description = "Get Certified , Digitally Certified, Ecofriendly Certified , Certifyyy  ...  ",
-  imageSrc = "https://images.unsplash.com/photo-1589330694653-ded6df03f754?ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=1989&q=80",
+  heading = "Best,Faster & Free Certification.",
+  description = "Get Digitally and  Ecofriendly Certified   ",    
+  imageSrc = "https://www.fasttechmedia.com/wp-content/uploads/2020/03/Content-Writing-Services.png",
   imageDecoratorBlob = true,
-  primaryButtonUrl = "https://google.com",
+  primaryButtonUrl = "/login",
   primaryButtonText = "Get Started",
   buttonRounded = true,
   features = ["User Friendly", "No need to Store Somewhere", "Authenticated Certificates","Money ND Time Efficient "],
@@ -91,14 +91,14 @@ export default ({
             </TextColumn>
             <ImageColumn>
               <ImageContainer>
-                <Image src={imageSrc} style={{width:"500px",height:"700px"}}/>
+                <Image src={imageSrc} style={{width: "auto", maxWidth: "550px", height: "auto", maxHeight: "500px"}}/>
                 {imageDecoratorBlob && <ImageDecoratorBlob />}
-                <Testimonial style={{width:"300px" ,border:"2px solid #000", boxShadow:"5px 5px 10px #000"}}>
+                {/* <Testimonial style={{width:"300px" ,border:"2px solid #000", boxShadow:"5px 5px 10px #000"}}>
                   <QuotesLeftIcon/>
                   <Quote>{testimonial.quote}</Quote>
                   <CustomerName>{testimonial.customerName}</CustomerName>
                   <CustomerCompany>{testimonial.customerCompany}</CustomerCompany>
-                </Testimonial>
+                </Testimonial> */}
               </ImageContainer>
               <Offsetbackground />
             </ImageColumn>

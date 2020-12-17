@@ -23,20 +23,20 @@ export default ({
   stats = [
     {
       key: "Users",
-      value: "2500+",
+      value: "99+",
     },
     {
-      key: "Revenue",
-      value: "$100M+",
+      key: "Free of cost",
+      value: "100%",
     },
     {
       key: "Organisations",
-      value: "60+",
+      value: "25+",
     },
   ]
 }) => {
   return (
-    <Container style={{backgroundColor:"#45add9"}}>
+    <Container style={{backgroundColor:"#1e91b3"}}>
       <ContentWithPaddingXl>
         <HeadingContainer>
           {subheading && <Subheading>{subheading}</Subheading>}

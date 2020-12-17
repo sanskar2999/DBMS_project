@@ -32,7 +32,7 @@ export default ({
   pushDownFooter = true
 }) => {
   return (
-    <Container css={pushDownFooter && tw`mb-8 lg:mb-8`} style={{marginBottom:"-80px", justifyContent:"center",height:"350px",backgroundColor:"#45add9",borderRadius:"30px"}}>
+    <Container css={pushDownFooter && tw`mb-8 lg:mb-8`} style={{marginBottom:"-80px", justifyContent:"center",height:"350px",backgroundColor:"#1e91b3",borderRadius:"30px"}}>
       <ContentWithPaddingXl>
       <PrimaryBackgroundContainer>
         <Row>
@@ -41,8 +41,8 @@ export default ({
             <Heading >{heading}</Heading>
           </TextContainer>
           <LinksContainer>
-            <PrimaryLink href={primaryLinkUrl} style={{boxShadow:"inset 3px 3px 15px #000"}}>{primaryLinkText}</PrimaryLink>
-            <SecondaryLink href={secondaryLinkUrl} style={{boxShadow:"inset 3px 3px 15px #000"}}>{secondaryLinkText}</SecondaryLink>
+            <PrimaryLink href={primaryLinkUrl}>{primaryLinkText}</PrimaryLink>
+            <SecondaryLink href={secondaryLinkUrl}>{secondaryLinkText}</SecondaryLink>
           </LinksContainer>
         </Row>
         <DecoratorBlobContainer>

@@ -100,13 +100,13 @@ export default ({ cards = null, heading = "Amazing Features", subheading = "Feat
   return (
     <Container id="features">
       <ThreeColumnContainer>
-        {subheading && <Subheading>{subheading}</Subheading>}
+        {/* {subheading && <Subheading>{subheading}</Subheading>} */}
         <Heading>{heading}</Heading>
         {description && <Description>{description}</Description>}
         <VerticalSpacer />
         {cards.map((card, i) => (
           <Column key={i} style={{marginTop:"25px"}}>
-            <Card style={{border:"1px solid #000",borderRadius:"25px" ,backgroundColor:"#a8e5f0" ,boxShadow:"inset 5px 5px 20px #fff, 4px 4px 15px #000" }}>
+            <Card>
               <span className="imageContainer">
                 <img src={card.imageSrc || defaultCardImage} alt="" style={{width:"50px",color:"white"}}/>
               </span>

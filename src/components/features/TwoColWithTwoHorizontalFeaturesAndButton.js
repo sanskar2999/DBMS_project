@@ -62,7 +62,7 @@ const PrimaryButton = styled(PrimaryButtonBase)(props => [
 ]);
 
 export default ({
-  subheading = " Upgrades",
+  subheading = "",
   heading = (
     <>
       Designed & Developed by <span tw="text-primary-500">Professionals.</span>
@@ -97,7 +97,7 @@ export default ({
     },
     {
       Icon: ShieldIconImage,
-      title: "BLOCKCHAIN Implementation",
+      title: "Additional Security Features",
       description: "For better, safer way to record activity and keep data fresh, while maintaining a record of its history",
       iconContainerCss: tw`bg-red-300 text-red-800`
     }

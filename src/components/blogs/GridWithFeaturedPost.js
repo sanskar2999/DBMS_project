@@ -77,36 +77,36 @@ export default ({
         "We at Certify Us, provides the digital platform from where any organisation can come and certify there students and employees",
       authorName: "CERTIFY US",
       authorProfile: "Brand",
-      url: "https://reddit.com",
+      url: "",
       featured: true
     },
     {
       postImageSrc:Image2,
-      title: "TEMPLATE ",
+      title: "Template ",
       
     },
     {
       postImageSrc:Image3,
-      title: "TEMPLATE",
+      title: "Template",
       
     },
     {
       postImageSrc:Image4,
-      title: "TEMPLATE",
+      title: "Template",
       
     },
     {
       postImageSrc:Image5,
-      title: "TEMPLATE",
+      title: "Template",
      
     }
   ]
 }) => {
   return (
-    <Container>
+    <Container id="template">
       <ContentWithPaddingXl>
         <HeadingContainer>
-          {subheading && <Subheading>{subheading}</Subheading>}
+          {/* {subheading && <Subheading>{subheading}</Subheading>} */}
           {heading && <Heading>{heading}</Heading>}
           {description && <Description>{description}</Description>}
         </HeadingContainer>

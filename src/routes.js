@@ -13,9 +13,6 @@ import CustomerLayout from 'src/layouts/CustomerLayout';
 import GenerateView from 'src/views/generate/GenerateView/index';
 import { element } from 'prop-types';
 import LandingPage from 'src/views/landingPage/index';
-import Features from 'src/components/features/ThreeColWithSideImage.js';
-import Testimonial from "src/components/testimonials/TwoColumnWithImageAndRating.js";
-import Blog from "src/components/blogs/GridWithFeaturedPost.js";
 const routes = [
   {
     path: 'app',
@@ -47,9 +44,6 @@ const routes = [
       { path: 'login', element: <LoginView /> },
       { path: 'register', element: <RegisterView /> },
       { path: '/', element: <Navigate to="/home" /> },
-      { path: '/features', element: <Features /> },
-      { path: '/ourteam', element: <Testimonial /> },
-      { path: '/templates', element: <Blog /> },
       { path: '*', element: <Navigate to="/404" /> }
     ]
   }

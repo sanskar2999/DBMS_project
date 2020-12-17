@@ -77,11 +77,11 @@ export default ({
   };
 
   return (
-    <Container style={{backgroundColor:"#45add9"}} >
+    <Container style={{backgroundColor:"#1e91b3"}} >
       <ContentWithPaddingXl>
         <Column>
           <HeaderContent>
-            {subheading && <Subheading>{subheading}</Subheading>}
+            {/* {subheading && <Subheading>{subheading}</Subheading>} */}
             <Heading>{heading}</Heading>
             {description && <Description>{description}</Description>}
           </HeaderContent>

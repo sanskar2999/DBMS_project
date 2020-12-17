@@ -30,7 +30,6 @@ const LandingPage = () => {
       <Testimonial 
         heading={<>Our <HighlightedText>Team</HighlightedText></>}
       />
-      
       <FAQ
         heading={<>Any <Highlighted>Questions ?</Highlighted></>}   
       />
