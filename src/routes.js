@@ -13,7 +13,6 @@ import CustomerLayout from 'src/layouts/CustomerLayout';
 import GenerateView from 'src/views/generate/GenerateView/index';
 import { element } from 'prop-types';
 import LandingPage from 'src/views/landingPage/index';
-
 const routes = [
   {
     path: 'app',

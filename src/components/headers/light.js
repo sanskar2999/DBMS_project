@@ -74,16 +74,21 @@ export default ({ roundedHeaderButton = false, logoLink, links, className, colla
 
   const defaultLinks = [
     <NavLinks key={2}>
-      <NavLink href="/#">About</NavLink>
-      <NavLink href="/#">Blog</NavLink>
-      <NavLink href="/#">Pricing</NavLink>
+      <NavLink href="/#">Home</NavLink>
+      <NavLink href="/home#features">Features</NavLink>
+      <NavLink href="/home#ourteam">Our Team</NavLink>
+      <NavLink href="/home#template">Template</NavLink>
       <NavLink href="/#">Contact Us</NavLink>
       <NavLink href="/login" tw="lg:ml-12!" >
         Login
       </NavLink>
-      <PrimaryLink css={ tw`rounded-full`} href="/register">Sign Up</PrimaryLink>
+     
+     
+<PrimaryLink css={ tw`rounded-full`} href="/register">Sign Up</PrimaryLink> 
+
     </NavLinks>
   ];
+
 
   const { showNavLinks, animation, toggleNavbar } = useAnimatedNavToggler();
   const collapseBreakpointCss = collapseBreakPointCssMap[collapseBreakpointClass];

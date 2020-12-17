@@ -6,10 +6,13 @@ import styled from "styled-components";
 import { css } from "styled-components/macro"; //eslint-disable-line
 import { SectionHeading, Subheading as SubheadingBase } from "src/components/misc/Headings.js";
 import { Container, ContentWithPaddingXl } from "src/components/misc/Layouts.js";
-import loveIllustrationImageSrc from "src/images/love-illustration.svg";
+import loveIllustrationImageSrc from "src/images/team1.jpg";
 import { ReactComponent as StarIconBase } from "src/images/star-icon.svg";
 import { ReactComponent as ArrowLeftIcon } from "src/images/arrow-left-3-icon.svg";
 import { ReactComponent as ArrowRightIcon } from "src/images/arrow-right-3-icon.svg";
+import Image1 from "src/images/sambhav.jpg";
+import Image2 from "src/images/sanskar.jpg";
+import Image3 from "src/images/shivam.jpg";
 
 const Row = tw.div`flex flex-col md:flex-row justify-between items-center`;
 const Column = tw.div`w-full max-w-md mx-auto md:max-w-none md:mx-0`;
@@ -29,7 +32,7 @@ const Subheading = tw(SubheadingBase)`text-center md:text-left`;
 const Heading = tw(
   SectionHeading
 )`mt-4 font-black text-left text-3xl sm:text-4xl lg:text-5xl text-center md:text-left leading-tight`;
-const Description = tw.p`mt-6 text-center md:text-left text-sm md:text-base lg:text-lg font-medium leading-relaxed text-secondary-100`;
+const Description = tw.p`mt-6 text-center md:text-left text-sm md:text-base lg:text-lg font-medium leading-relaxed text-black`;
 
 const TestimonialSlider = styled(Slider)`
   ${tw`w-full mt-10 text-center md:text-left`}
@@ -73,44 +76,50 @@ export default ({
   imageRounded = true,
   imageBorder = false,
   imageShadow = false,
-  subheading = "Testimonials",
-  heading = "Our Clients Love Us.",
-  description = "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua enim ad minim veniam.",
+  subheading = "",
+  heading = "Our Team.",
+  description = " Talent wins games, but teamwork and intelligence win championships.",
   textOnLeft = false,
   testimonials = [
     {
-      stars: 5,
-      profileImageSrc:
-        "https://images.unsplash.com/photo-1494790108377-be9c29b29330?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=3.25&w=512&h=512&q=80",
-      heading: "Amazing User Experience",
+      profileImageSrc:Image1,
+      heading: "Learning must not be stopped",
       quote:
-        "Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia. Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco.",
-      customerName: "Charlotte Hale",
-      customerTitle: "CEO, Delos Inc."
+        "Learning make the men perfect, Learning must be continued wherever you are ",
+      customerName: "Sambhav K Bhandari",
+      customerTitle: "Team Member"
     },
     {
-      stars: 5,
-      profileImageSrc:
-        "https://images.unsplash.com/photo-1531427186611-ecfd6d936c79?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=2.25&w=512&h=512&q=80",
-      heading: "Love the Developer Experience and Design Principles !",
+    
+      profileImageSrc:Image2,
+      heading: " Teamwork makes a huge success ",
       quote:
-        "Sinor Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia. Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam.",
-      customerName: "Adam Cuppy",
-      customerTitle: "Founder, EventsNYC"
+        "Coming together is a beginning. Keeping together is progress. Working together is success.",
+      customerName: "Sanskar Agrawal",
+      customerTitle: "Team Member"
+    },
+    {
+    
+      profileImageSrc:Image3,
+      heading: "Makes Everything Perfect",
+      quote:
+        "We think, mistakenly, that success is the result of the amount of time we put in at work, instead of the quality of time we put in",
+        customerName: "Shivam",
+      customerTitle: "Team Member"
     }
   ]
 }) => {
   const [sliderRef, setSliderRef] = useState(null);
 
   return (
-    <Container>
+    <Container id="ourteam">
       <ContentWithPaddingXl>
         <Row>
           <ImageColumn>
             <Image src={imageSrc} imageBorder={imageBorder} imageShadow={imageShadow} imageRounded={imageRounded} />
           </ImageColumn>
           <TextColumn textOnLeft={textOnLeft}>
-            <Subheading>{subheading}</Subheading>
+            {/* <Subheading>{subheading}</Subheading> */}
             <Heading>{heading}</Heading>
             <Description>{description}</Description>
             <TestimonialSlider arrows={false} ref={setSliderRef}>

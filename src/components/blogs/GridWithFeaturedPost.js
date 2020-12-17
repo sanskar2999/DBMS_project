@@ -6,7 +6,12 @@ import { css } from "styled-components/macro";
 import { SectionHeading, Subheading as SubheadingBase } from "src/components/misc/Headings";
 import { SectionDescription } from "src/components/misc/Typography";
 import { ReactComponent as SvgDotPatternIcon } from "src/images/dot-pattern.svg";
-
+import Image1 from "src/images/1.gif";
+import Image6 from "src/images/logo.svg";
+import Image2 from "src/images/Certify2.png";
+import Image3 from "src/images/Certify3.png";
+import Image4 from "src/images/Certify4.png";
+import Image5 from "src/images/Certify5.png";
 const HeadingContainer = tw.div`text-center`;
 const Subheading = tw(SubheadingBase)`mb-4`;
 const Heading = tw(SectionHeading)``;
@@ -64,54 +69,44 @@ export default ({
   heading = "We love writing.",
   description = "",
   posts = [
-    {
-      postImageSrc:
-        "https://images.unsplash.com/photo-1563784462041-5f97ac9523dd?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1024&q=80",
-      authorImageSrc:
-        "https://images.unsplash.com/photo-1531427186611-ecfd6d936c79?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=2.95&w=512&h=512&q=80",
-      title: "Enjoying the beach life while on a vacation",
+     {
+      postImageSrc: Image1,
+      authorImageSrc:Image6,
+      title: "Certification make us proud , builds confidence",
       description:
-        "Lorem ipsum dolor sit amet, consecteturious adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua now ele.",
-      authorName: "Adam Cuppy",
-      authorProfile: "Vlogger",
-      url: "https://reddit.com",
+        "We at Certify Us, provides the digital platform from where any organisation can come and certify there students and employees",
+      authorName: "CERTIFY US",
+      authorProfile: "Brand",
+      url: "",
       featured: true
     },
     {
-      postImageSrc:
-        "https://images.unsplash.com/photo-1552733407-5d5c46c3bb3b?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=768&q=80",
-      title: "Getting the most out of your vacation",
-      authorName: "Aaron Patterson",
-      url: "https://reddit.com"
+      postImageSrc:Image2,
+      title: "Template ",
+      
     },
     {
-      postImageSrc:
-        "https://images.unsplash.com/photo-1469854523086-cc02fe5d8800?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=768&q=80",
-      title: "Choosing the perfect Safaris in Africa",
-      authorName: "Sam Phipphen",
-      url: "https://reddit.com"
+      postImageSrc:Image3,
+      title: "Template",
+      
     },
     {
-      postImageSrc:
-        "https://images.unsplash.com/photo-1503220317375-aaad61436b1b?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=768&q=80",
-      title: "Hiking during the monsoon in Asia",
-      authorName: "Tony Hawk",
-      url: "https://timerse.com"
+      postImageSrc:Image4,
+      title: "Template",
+      
     },
     {
-      postImageSrc:
-        "https://images.unsplash.com/photo-1504609773096-104ff2c73ba4?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=768&q=80",
-      title: "Must carry items while travelling to Thailand",
-      authorName: "Himali Turn",
-      url: "https://timerse.com"
+      postImageSrc:Image5,
+      title: "Template",
+     
     }
   ]
 }) => {
   return (
-    <Container>
+    <Container id="template">
       <ContentWithPaddingXl>
         <HeadingContainer>
-          {subheading && <Subheading>{subheading}</Subheading>}
+          {/* {subheading && <Subheading>{subheading}</Subheading>} */}
           {heading && <Heading>{heading}</Heading>}
           {description && <Description>{description}</Description>}
         </HeadingContainer>
@@ -121,7 +116,7 @@ export default ({
               <Post className="group" href={post.url}>
                 <PostImage imageSrc={post.postImageSrc} />
                 <PostText>
-                  <PostTitle>{post.title}</PostTitle>
+                  <PostTitle style={{textAlign:"center",fontSize:"25px"}}>{post.title}</PostTitle>
                   {post.featured && <PostDescription>{post.description}</PostDescription>}
                   <AuthorInfo>
                     {post.featured && <AuthorImage src={post.authorImageSrc} />}
