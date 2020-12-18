@@ -65,22 +65,25 @@ const useStyles = makeStyles(({
 var templates = [];
 
 const LatestProducts = ({ className, ...rest }) => {
+  const [items, setTemplates] = useState([]);
   const classes = useStyles();
   useEffect(() => {
     templates=[];
   fetch('http://localhost:5000/templates/')
   .then(resp => resp.json())
-  .then(data => data.map((images)=>{
+  .then(data => data.map(async(images)=>{
     console.log(images.url);
-      templates.push({
+      await templates.push({
         id: '12',
         media: 'http://localhost:5000/'+images.url,
         title: images.name,
       })
+    
+    setTemplates(templates)
+    
   }))
 },[])
-  const [products] = useState(templates);
-  products.length = 5;
+  items.length = 5;
 
   return (
     <Card
@@ -88,14 +91,14 @@ const LatestProducts = ({ className, ...rest }) => {
       {...rest}
     >
       <CardHeader
-        subtitle={`${products.length} in total`}
+        subtitle={`${items.length} in total`}
         title="LATEST 5 TEMPLATES "
       />
       <Divider />
       <List>
-        {products.map((product, i) => (
+        {items.map((product, i) => (
           <ListItem
-            divider={i < products.length - 1}
+            divider={i < items.length - 1}
             key={product.id}
           >
             <ListItemAvatar>

@@ -1,4 +1,5 @@
-import React, { useState , useEffect } from 'react';
+import React, { useState, useEffect } from 'react';
+import Loader from 'react-loader-spinner';
 import {
   Box,
   Container,
@@ -18,32 +19,34 @@ const useStyles = makeStyles((theme) => ({
   }
 }));
 
-var users=[];
+var users = [];
 
 const CustomerListView = () => {
+  const [users_list, setUsers] = useState([]);
+  const [values, setLoading] = useState({
+    loading: true,
+  });
+
   const classes = useStyles();
   useEffect(() => {
     users=[];
   fetch('http://localhost:5000/customer/')
   .then(resp => resp.json())
-  .then(data => data.map((list)=>{
-      users.push({
+  .then(data => data.map( async (list)=>{
+      await users.push({
           id: '12',
-          address: {
-            country: 'India',
-            state: 'Madhya Pradesh',
-            city: 'Indore',
-            street: 'Gumasta Nagar'
-          },
           avatarUrl: 'http://localhost:5000/'+list.image,
           createdAt: 1555016400000,
           email: list.email,
           name: list.name,
-          phone: '9898989899'
       })
+    setUsers(users);
+    setLoading({
+      laoding:false,
+    })
   }))
 },[])
-  const [customers] = useState(users);
+  
 
   return (
     <Page
@@ -53,7 +56,7 @@ const CustomerListView = () => {
       <Container maxWidth={false}>
         <Toolbar />
         <Box mt={3}>
-          <Results customers={customers} />
+          { values.loading ? <center><Loader type="ThreeDots" color="#00BFFF" height={80} width={80} style={{marginTop:100+"px"}} /></center> : <Results customers={users_list} />}
         </Box>
       </Container>
     </Page>

@@ -79,13 +79,10 @@ export default ({ roundedHeaderButton = false, logoLink, links, className, colla
       <NavLink href="/home#ourteam">Our Team</NavLink>
       <NavLink href="/home#template">Template</NavLink>
       <NavLink href="/#">Contact Us</NavLink>
-      <NavLink href="/login" tw="lg:ml-12!" >
+      {localStorage.getItem('token') != null ? <PrimaryLink css={tw`rounded-full`} href= { localStorage.getItem('role') === 'admin' ? '/app/dashboard' : '/customer/dashboard'} >Go to Dashboard</PrimaryLink> :<NavLink href="/login" tw="lg:ml-12!" >
         Login
-      </NavLink>
-     
-     
-<PrimaryLink css={ tw`rounded-full`} href="/register">Sign Up</PrimaryLink> 
-
+      </NavLink>}
+      {localStorage.getItem('token')!=null?<container></container> :<PrimaryLink css={ tw`rounded-full`} href="/register">SignUP</PrimaryLink> } 
     </NavLinks>
   ];
 

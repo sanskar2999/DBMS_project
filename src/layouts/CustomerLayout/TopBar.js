@@ -53,7 +53,7 @@ const TopBar = ({
       {...rest}
     >
       <Toolbar>
-        <RouterLink to="/app/dashboard">
+        <RouterLink to="/customer/dashboard">
           <Logo />
 
         </RouterLink>

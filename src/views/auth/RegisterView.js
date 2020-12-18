@@ -115,6 +115,7 @@ const RegisterView = () => {
                 .then(function (response) {
                   var data_customer = new FormData();
                   console.log(file);
+                  localStorage.clear();
                         data_customer.append('image', file);
                         data_customer.append('name', value.firstName);
                         data_customer.append('email', value.email);
@@ -294,6 +295,7 @@ const RegisterView = () => {
                       size="large"
                       type="submit"
                       variant="contained"
+                      onClick={isSubmitting}
                     >
                       Sign up now
                   </Button>

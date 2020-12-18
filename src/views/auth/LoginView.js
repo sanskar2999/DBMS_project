@@ -134,8 +134,6 @@ const LoginView = () => {
                     Sign in on the internal platform
                   </Typography> */}
                     </Box>
-                
-                
                     <Box
                       mt={3}
                       mb={1}
