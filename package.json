@@ -55,6 +55,7 @@
     "react-helmet": "^6.1.0",
     "react-image-picker": "^1.1.1",
     "react-image-select": "^1.0.1",
+    "react-loader-spinner": "^3.1.14",
     "react-modal": "^3.11.2",
     "react-papaparse": "^3.11.0",
     "react-perfect-scrollbar": "^1.5.8",

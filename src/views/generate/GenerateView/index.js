@@ -17,6 +17,7 @@ import { Formik } from 'formik';
 import jwt_decode from "jwt-decode";
 import ImagePicker from 'react-image-picker'
 import 'react-image-picker/dist/index.css'
+import Loader from 'react-loader-spinner';
 
 
 const useStyles = makeStyles((theme) => ({
@@ -65,14 +66,14 @@ export default class ProductList extends Component{
             var templates=[];
           fetch('http://localhost:5000/templates/')
           .then(resp => resp.json())
-          .then(data => data.map((images)=>{
+          .then(data => data.map(async(images)=>{
               var imageUrl='http://localhost:5000/'+images.url;
               templates.push(imageUrl)
+              this.setState({
+                imageList: templates,
+                loaded:true,
+              })
           }))
-          this.setState({
-            imageList: templates,
-            loaded:true,
-          })
           // console.log(imageList)
         }
 
@@ -114,17 +115,6 @@ export default class ProductList extends Component{
           }
         
   render(){
-    if(this.state.loaded==false)
-      {
-        return(
-        <Page>
-        <Container maxWidth="sm"></Container>
-        </Page>
-        )
-
-      }
-    else
-    {
     return(
           <Page
         >
@@ -180,11 +170,12 @@ export default class ProductList extends Component{
                     <form onSubmit={handleSubmit}>
                     
                       <Box mt={3}>
-                        
-                      <ImagePicker 
-                            images={this.state.imageList.map((image, i) => ({src: image, value: i}))}
-                            onPick={this.onPick}
-                          />
+                        {
+                          this.state.loaded==false ? <center><Loader type="ThreeDots" color="#00BFFF" height={80} width={80} style={{marginTop:100+"px"}}/></center>:  <ImagePicker 
+                          images={this.state.imageList.map((image, i) => ({src: image, value: i}))}
+                          onPick={this.onPick}
+                        />
+                        }
                         <TextField
                           label="signature"
                           value={this.state.signature}
@@ -229,6 +220,5 @@ export default class ProductList extends Component{
           </Container>
         </Page>
     )
-  }
  }
 }
