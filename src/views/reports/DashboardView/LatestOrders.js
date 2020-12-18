@@ -3,6 +3,8 @@ import clsx from 'clsx';
 import moment from 'moment';
 import { v4 as uuid } from 'uuid';
 import PerfectScrollbar from 'react-perfect-scrollbar';
+
+
 import PropTypes from 'prop-types';
 import {
   Box,
@@ -66,8 +68,11 @@ const LatestOrders = ({ className, ...rest }) => {
   const classes = useStyles();
   const [orders] = useState(data);
   
+if (localStorage.getItem('role') == "admin"){
 
   return (
+
+  
     <Card
       className={clsx(classes.root, className)}
       {...rest}
@@ -147,6 +152,12 @@ const LatestOrders = ({ className, ...rest }) => {
       </Box>
     </Card>
   );
+}
+
+return (
+  <container></container>
+);
+ 
 };
 
 LatestOrders.propTypes = {

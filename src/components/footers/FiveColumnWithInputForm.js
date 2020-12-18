@@ -5,9 +5,9 @@ import { css } from "styled-components/macro"; //eslint-disable-line
 import { PrimaryButton as PrimaryButtonBase } from "src/components/misc/Buttons.js";
 
 import LogoImage from "src/images/logo.svg";
-import { ReactComponent as FacebookIcon } from "src/images/facebook-icon.svg";
-import { ReactComponent as TwitterIcon } from "src/images/twitter-icon.svg";
-import { ReactComponent as YoutubeIcon } from "src/images/youtube-icon.svg";
+import { ReactComponent as FacebookIcon } from "src/images/email.svg";
+import { ReactComponent as TwitterIcon } from "src/images/phone-call.svg";
+
 
 const Container = tw.div`relative bg-gray-200 text-gray-700 -mb-8 -mx-8 px-8 py-20 lg:py-24`;
 const Content = tw.div`max-w-screen-xl mx-auto relative z-10`;
@@ -40,9 +40,9 @@ const CopywrightNotice = tw.p`text-center text-sm sm:text-base mt-8 md:mt-0 font
 
 const SocialLinksContainer = tw.div`mt-8 md:mt-0 flex`;
 const SocialLink = styled.a`
-  ${tw`cursor-pointer p-2 rounded-full bg-gray-900 text-gray-100 hover:bg-gray-700 transition duration-300 mr-4 last:mr-0`}
+  ${tw`cursor-pointer p-4 rounded-full text-gray-100 hover:bg-gray-400 transition duration-300 mr-4 last:mr-0`}
   svg {
-    ${tw`w-4 h-4`}
+    ${tw`w-8 h-8`}
   }
 `;
 
@@ -50,12 +50,6 @@ export default () => {
   return (
     <Container>
       <Content>
-        <SixColumns>
-          
-         
-          
-          
-        </SixColumns>
         <Divider />
         <ThreeColRow>
           <LogoContainer>
@@ -64,15 +58,13 @@ export default () => {
           </LogoContainer>
           <CopywrightNotice>&copy; 2020 Certify Us All Rights Reserved.</CopywrightNotice>
           <SocialLinksContainer>
-            <SocialLink href="https://facebook.com">
+            <SocialLink href="https://mail.google.com/mail/?view=cm&fs=1&tf=1&to=certifyus2020@gmail.com&body=*Enter the problem you are facing*">
               <FacebookIcon />
             </SocialLink>
-            <SocialLink href="https://twitter.com">
+            <SocialLink href="tel:6261999236">
               <TwitterIcon />
             </SocialLink>
-            <SocialLink href="https://youtube.com">
-              <YoutubeIcon />
-            </SocialLink>
+            
           </SocialLinksContainer>
         </ThreeColRow>
       </Content>
