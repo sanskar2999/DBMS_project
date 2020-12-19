@@ -96,41 +96,7 @@ export default class ProductList extends Component {
 
     reader.readAsDataURL(image);
   }
-    componentDidMount(){
-            var templates=[];
-          fetch('http://localhost:5000/templates/')
-          .then(resp => resp.json())
-          .then(data => data.map(async(images)=>{
-              var imageUrl='http://localhost:5000/'+images.url;
-              templates.push(imageUrl)
-              this.setState({
-                imageList: templates,
-                loaded:true,
-              })
-          }))
-          // console.log(imageList)
-        }
-
-           handlechange = (event) => {
-            this.setState({
-              signature: event.target.value,
-            })
-          };
-
-           _handleImageChange(e) {
-            e.preventDefault();
-
-            let reader = new FileReader();
-            let image = e.target.files[0];
-
-            reader.onloadend = () => {
-              file = image;
-            }
-
-            reader.readAsDataURL(image)
-          }
-
-           _handleTemplateChange(e) {
+     _handleTemplateChange(e) {
             e.preventDefault();
 
             let reader = new FileReader();
@@ -203,7 +169,7 @@ export default class ProductList extends Component {
                   <form onSubmit={handleSubmit}>
                     <Box mt={12} xl={12}>
                       <Typography varient="h3" component="h3" style={{padding:"20px",fontSize:"20px",marginTop:"-65px"}}>
-                        CHOOSE A TEMPLATE : 
+                        Choose a template : 
                       </Typography>
                       {this.state.loaded == false ? (
                         <center>
@@ -234,7 +200,7 @@ export default class ProductList extends Component {
                         }}
                       >
                      
-                          <Typography varient="h3" component="h3" style={{paddingTop:"20px",paddingBottom:"15px",fontSize:"20px"}}>UPLOAD CSV FILE :</Typography>
+                          <Typography varient="h3" component="h3" style={{paddingTop:"20px",paddingBottom:"15px",fontSize:"20px"}}>Upload csv file :</Typography>
                        
                         <input
                           accept=".csv, application/vnd.openxmlformats-officedocument.spreadsheetml.sheet, application/vnd.ms-excel"
@@ -245,7 +211,7 @@ export default class ProductList extends Component {
                         />
                       </div>
 
-                      <Typography varient="h3" component="h3" style={{paddingTop:"20px",paddingBottom:"10px",fontSize:"20px",marginLeft:"24px"}}>SIGNATURE :</Typography>
+                      <Typography varient="h3" component="h3" style={{paddingTop:"20px",paddingBottom:"10px",fontSize:"20px",marginLeft:"24px"}}>Signature :</Typography>
 
                       <TextField
                         label="Signature"
@@ -260,11 +226,11 @@ export default class ProductList extends Component {
                       />
                     </Box>
 
-                    <Box my={2}>
+                    <Box my={2} style={{ textAlign: 'center'}}>
                       <Button
                         color="primary"
                         disabled={isSubmitting}
-                        fullWidth
+                        halfWidth
                         size="large"
                         type="submit"
                         variant="contained"
