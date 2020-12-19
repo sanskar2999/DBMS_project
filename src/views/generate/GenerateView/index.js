@@ -122,6 +122,8 @@ export default class ProductList extends Component{
             <Formik
                 
               onSubmit={(value) => {
+                 var  res = this.state.image.image.src.substring(21, this.state.image.image.src.length);
+                 res="uploads"+res
                 if (localStorage.getItem('token') != null) {
                   decoded = jwt_decode(localStorage.getItem('token'));
                 }
@@ -134,7 +136,7 @@ export default class ProductList extends Component{
                 console.log(decoded.email);
                 data.append('signature', this.state.signature);
                 data.append('file', file);
-                data.append('template_url', 'uploads/2020-12-13T04-27-09.039ZWhite Geometric Design Participation Certificate (1)-1.png');
+                data.append('template_url',res);
                 data.append('admin_email', admin_emailId);
 
                 var config = {
