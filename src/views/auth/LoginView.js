@@ -1,4 +1,4 @@
-import React from 'react';
+import React ,{useEffect} from 'react';
 import { Link as RouterLink, useNavigate } from 'react-router-dom';
 import * as Yup from 'yup';
 import { Formik } from 'formik';
@@ -19,6 +19,9 @@ import GoogleIcon from 'src/icons/Google';
 import Page from 'src/components/Page';
 import { values, valuesIn } from 'lodash';
 
+
+
+
 const useStyles = makeStyles((theme) => ({
   root: {
     backgroundColor: theme.palette.background.dark,
@@ -33,6 +36,8 @@ const useStyles = makeStyles((theme) => ({
     margin:"auto",
   }
 }));
+
+
 
 const LoginView = () => {
   const classes = useStyles();
@@ -167,7 +172,7 @@ const LoginView = () => {
                       value={values.password}
                       variant="outlined"
                     />
-                    <input type="checkbox" onclick="myFunction()" style={{ marginRight: 5 + 'px'}} />
+                    <input type="checkbox" onclick="passwordFunction()" style={{ marginRight: 5 + 'px'}} />
                     <span>Show Password</span>
                     <Box my={2}>
                       <Button
