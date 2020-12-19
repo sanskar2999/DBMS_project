@@ -7,6 +7,7 @@ import CustomerListView from 'src/views/customer/CustomerListView';
 import DashboardView from 'src/views/reports/DashboardView';
 import LoginView from 'src/views/auth/LoginView';
 import ProductListView from 'src/views/product/ProductListView';
+import CertificateListView from 'src/views/certificatesEarned/CertificateListView';
 import RegisterView from 'src/views/auth/RegisterView';
 import SettingsView from 'src/views/settings/SettingsView';
 import CustomerLayout from 'src/layouts/CustomerLayout';
@@ -32,7 +33,7 @@ const routes = [
     children: [
       { path: 'account', element: <AccountView /> },
       { path: 'dashboard', element: <DashboardView /> },
-      { path: 'certificatesEarned', element: <ProductListView /> },
+      { path: 'certificatesEarned', element: <CertificateListView/> },
       { path: 'settings', element: <SettingsView /> }
     ]
   },
