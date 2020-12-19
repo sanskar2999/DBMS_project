@@ -4,6 +4,7 @@ import * as Yup from 'yup';
 import { Formik } from 'formik';
 import {
   Box,
+  Card,
   Button,
   Checkbox,
   Container,
@@ -169,9 +170,10 @@ const RegisterView = () => {
               touched,
               values
             }) => (
-              <form onSubmit={handleSubmit}>
+              <form onSubmit={handleSubmit} style={{marginTop:"25px"}}>
+                <Card style={{padding:"25px",marginTop:"15px",width:"120%"}}>
                 <Box mb={3}>
-                    <div  >
+                    <div>
                     <img src="static/images/logo.png" style={{ justifyItems:"center", justifyContent:"center", width:"30%", display: "block",margin:"auto", marginTop:20+"px"}}></img>
                     {/* <h3 style={{fontSize:60+"px", textAlign:"center",marginTop: -100+"px",marginLeft: 50+"px",textShadow:" 0 8.36px 5.896px #4287f5,0 -2px 1px #010a17"}}>CERTIFY US</h3> */}
                   </div>
@@ -179,6 +181,7 @@ const RegisterView = () => {
                   <Typography
                     color="textPrimary"
                     variant="h2"
+                    style={{textAlign:"center"}}
                   >
                     Create new account
                   </Typography>
@@ -186,6 +189,7 @@ const RegisterView = () => {
                       color="textSecondary"
                       gutterBottom
                       variant="body2"
+                      style={{textAlign:"center"}}
                     >
                       Use your email to create new account
                   </Typography>
@@ -233,6 +237,7 @@ const RegisterView = () => {
                     <Select
                       labelId="demo-simple-select-outlined-label"
                       id="demo-simple-select-outlined"
+                      style={{marginLeft:"-7px"}}
                       value={member}
                       onChange={handlechange}
                       label="Member"
@@ -245,43 +250,19 @@ const RegisterView = () => {
                       <MenuItem value='customer'>Customer</MenuItem>
                     </Select>
                   </FormControl>
-                  <div style={{ marginTop: 10 + "px", marginBottom: 10 + "px", marginLeft: 20 + "px" }}>
-                    <span style={{ fontSize: 15 + "px", fontFamily: "monospace" }}><b>Upload Your Profile Picture:-</b></span>
+                  <div style={{ display:"flex", padding:"10px" }}>
+                <span> <Typography varient="h5" component="h5" style={{fontSize:"18px"}}>
+                       UPLOAD YOUR PROFILE PICTURE : 
+                      </Typography> </span> 
                     <input
                       accept="image/*"
                       type="file"
-                      style={{ marginLeft: 10 + "px" }}
+                      style={{marginTop:"3px",marginLeft:"3px"}}
                       onChange={_handleImageChange}
                       name="avatar"
                     />
                   </div>
-                  <Box
-                    alignItems="center"
-                    display="flex"
-                    ml={-1}
-                  >
-                    <Checkbox
-                      checked={values.policy}
-                      name="policy"
-                      onChange={handleChange}
-                    />
-                    <Typography
-                      color="textSecondary"
-                      variant="body1"
-                    >
-                      I have read the
-                    {' '}
-                      <Link
-                        color="primary"
-                        component={RouterLink}
-                        to="#"
-                        underline="always"
-                        variant="h6"
-                      >
-                        Terms and Conditions
-                    </Link>
-                    </Typography>
-                  </Box>
+                  
                   {Boolean(touched.policy && errors.policy) && (
                     <FormHelperText error>
                       {errors.policy}
@@ -315,6 +296,7 @@ const RegisterView = () => {
                 </Typography>
                 <br>
                 </br>
+                </Card>
               </form>
             )}
           </Formik>
