@@ -10,33 +10,32 @@ import {
   Divider,
   Grid,
   TextField,
+  Modal,
   makeStyles
 } from '@material-ui/core';
 import jwt_decode from "jwt-decode";
+import axios from 'axios';
+import { functions } from 'lodash';
 
 var decoded;
 
-// const states = [
-//   {
-//     value: 'madhyapradesh',
-//     label: 'Madhya Pradesh'
-//   },
-//   {
-//     value: 'uttarpradesh',
-//     label: 'Uttar Pradesh'
-//   },
-//   {
-//     value: 'bihar',
-//     label: 'Bihar'
-//   }
-// ];
-
-const useStyles = makeStyles(() => ({
-  root: {}
+const useStyles = makeStyles((theme) => ({
+  root: {},
+  paper: {
+    position: 'absolute',
+    width: 500,
+    backgroundColor: "white",
+    left: "50%",
+    top: "50%", 
+    marginLeft: "-150px",
+    marginTop: "-150px",
+    padding: theme.spacing(2, 4, 3),
+  },
 }));
 
 const ProfileDetails = ({ className, ...rest }) => {
   const classes = useStyles();
+  const [open, setOpen] = React.useState(false);
   const [values, setValues] = useState({
     firstName: '',
     email: '',
@@ -69,6 +68,78 @@ const ProfileDetails = ({ className, ...rest }) => {
     window.location.href = '/login';
   }
 
+  const handleOpen = () => {
+    setOpen(true);
+  };
+
+  const handleClose = () => {
+    setOpen(false);
+  };
+
+  function updateProfile(){
+    console.log(values.email);
+    var data = JSON.stringify({"email": values.email,"name": values.firstName});
+    var config;
+      
+    if(decoded.role=="admin")
+    {
+      config = {
+        method: 'post',
+        url: 'http://localhost:5000/admin/update_profile',
+        headers: { 
+          'Content-Type': 'application/json'
+        },
+        data : data
+      };
+    }
+    else 
+    {  
+      config = {
+        method: 'post',
+        url: 'http://localhost:5000/customer/update_profile',
+        headers: { 
+          'Content-Type': 'application/json'
+        },
+        data : data
+      };
+
+    }
+    axios(config)
+    .then(function (response) {
+      console.log(JSON.stringify(response.data));
+      handleOpen();
+    })
+    .catch(function (error) {
+      console.log(error);
+    });
+  }
+
+  function updatePassword() {
+    if(values.password==values.confirm)
+    { 
+      var data = JSON.stringify({"email": values.email,"password": values.password});
+
+      var config = {
+        method: 'post',
+        url: 'http://localhost:5000/user/updatePassword',
+        headers: { 
+          'Content-Type': 'application/json'
+        },
+        data : data
+      };
+
+      axios(config)
+      .then(function (response) {
+        console.log(JSON.stringify(response.data));
+        handleOpen();
+      })
+      .catch(function (error) {
+        console.log(error);
+      });
+
+    }
+  }
+
   return (
     <form
       autoComplete="off"
@@ -95,7 +166,7 @@ const ProfileDetails = ({ className, ...rest }) => {
               <TextField
                 fullWidth
                 label="Name"
-                name="Name"
+                name="firstName"
                 onChange={handleChange}
                 required
                 value={values.firstName}
@@ -128,6 +199,7 @@ const ProfileDetails = ({ className, ...rest }) => {
                 name="email"
                 onChange={handleChange}
                 required
+                disabled
                 value={values.email}
                 variant="outlined"
               />
@@ -187,6 +259,7 @@ const ProfileDetails = ({ className, ...rest }) => {
             color="primary"
             variant="contained"
             style={{marginRight:560+"px"}}
+            onClick={updateProfile}
           >
             Save details
           </Button>
@@ -237,12 +310,37 @@ const ProfileDetails = ({ className, ...rest }) => {
           <Button
             color="primary"
             variant="contained"
+            onClick={updatePassword}
           >
             Update
           </Button>
         </Box>
       </Card>
+      <Modal
+          open={open}
+          onClose={handleClose}
+          aria-labelledby="simple-modal-title"
+          aria-describedby="simple-modal-description"
+        >
+           <div className={classes.paper}>
+              <h2 id="simple-modal-title">Update successful</h2>
+              <p id="simple-modal-description">
+              <div style={{ display:"flex", padding:"10px" }}>
+                </div>
+                    <br></br>
+                    <Button
+                      color="primary"
+                      fullWidth
+                      variant="contained"
+                      onClick={handleClose}
+                    >
+                      close 
+                    </Button>
+              </p>
+            </div>
+        </Modal>
     </form>
+        
   );
 };
 
