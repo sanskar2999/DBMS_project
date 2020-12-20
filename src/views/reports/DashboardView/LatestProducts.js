@@ -3,6 +3,7 @@ import clsx from 'clsx';
 import PropTypes from 'prop-types';
 import { v4 as uuid } from 'uuid';
 import moment from 'moment';
+import Loader from 'react-loader-spinner';
 import {
   Box,
   Button,
@@ -66,6 +67,10 @@ var templates = [];
 
 const LatestProducts = ({ className, ...rest }) => {
   const [items, setTemplates] = useState([]);
+  const [values, setLoading] = useState({
+    loading: true,
+  });
+
   const classes = useStyles();
   useEffect(() => {
     templates=[];
@@ -80,6 +85,9 @@ const LatestProducts = ({ className, ...rest }) => {
       })
     
     setTemplates(templates)
+    setLoading({
+      loading:false,
+    })
     
   }))
 },[])
@@ -95,6 +103,7 @@ const LatestProducts = ({ className, ...rest }) => {
         title="LATEST 5 TEMPLATES "
       />
       <Divider />
+      {values.loading? <center><Loader type="ThreeDots" color="#00BFFF" height={80} width={80} style={{margin:100+"px"}} /></center> : 
       <List>
         {items.map((product, i) => (
           <ListItem
@@ -120,6 +129,7 @@ const LatestProducts = ({ className, ...rest }) => {
           </ListItem>
         ))}
       </List>
+}
       <Divider />
       <Box
         display="flex"
