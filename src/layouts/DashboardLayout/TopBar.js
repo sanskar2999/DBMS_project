@@ -41,7 +41,11 @@ const TopBar = ({
   function logout(){
     localStorage.clear();
     // useNavigate('/login', { replace: true });
-     window.location.href="/login";
+    
+    var url = '/login';
+    window.history.go(-window.history.length);
+    window.location.href = url;
+    
   }
 
 
@@ -86,7 +90,7 @@ const TopBar = ({
       </Toolbar>
     </AppBar>
   );
-};
+  };
 
 TopBar.propTypes = {
   className: PropTypes.string,

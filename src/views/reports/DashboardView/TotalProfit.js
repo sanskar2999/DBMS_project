@@ -10,7 +10,10 @@ import {
   makeStyles,
   colors
 } from '@material-ui/core';
-import AttachMoneyIcon from '@material-ui/icons/AttachMoney';
+import AttachMoneyIcon from '@material-ui/icons/';
+import {
+  Globe as GlobeIcon
+} from 'react-feather';
 
 const useStyles = makeStyles(() => ({
   root: {
@@ -67,7 +70,7 @@ const TotalProfit = ({ className, ...rest }) => {
           </Grid>
           <Grid item>
             <Avatar className={classes.avatar}>
-              <AttachMoneyIcon />
+              <GlobeIcon />
             </Avatar>
           </Grid>
         </Grid>

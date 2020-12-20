@@ -88,15 +88,13 @@ const RegisterView = () => {
               email: '',
               firstName: '',
               password: '',
-              member: '',
-              policy: false
+              member: '', 
             }}
             validationSchema={
               Yup.object().shape({
                 email: Yup.string().email('Must be a valid email').max(255).required('Email is required'),
                 firstName: Yup.string().max(255).required('First name is required'),
                 password: Yup.string().max(255).required('password is required'),
-                policy: Yup.boolean().oneOf([true], 'This field must be checked')
               })
             }
             onSubmit={(value) => {
