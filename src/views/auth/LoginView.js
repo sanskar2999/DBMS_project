@@ -14,6 +14,10 @@ import {
   makeStyles,
   Card
 } from '@material-ui/core';
+import Alert from '@material-ui/lab/Alert';
+import IconButton from '@material-ui/core/IconButton';
+import Collapse from '@material-ui/core/Collapse';
+import CloseIcon from '@material-ui/icons/Close';
 import FacebookIcon from 'src/icons/Facebook';
 import GoogleIcon from 'src/icons/Google';
 import Page from 'src/components/Page';
@@ -43,6 +47,7 @@ const LoginView = () => {
   const classes = useStyles();
   const navigate = useNavigate();
   var axios = require('axios');
+  const [open, setOpen] = React.useState(false);
   
 
   return (
@@ -57,6 +62,24 @@ const LoginView = () => {
         justifyContent="center"
       >
         <Container maxWidth="sm">
+        <Collapse in={open}>
+        <Alert severity="error"
+              action={
+                <IconButton
+                  aria-label="close"
+                  color="inherit"
+                  size="small"
+                  onClick={() => {
+                    setOpen(false);
+                  }}
+                >
+                  <CloseIcon fontSize="inherit" />
+                </IconButton>
+              }
+            >
+              Auth failed check Email Address and Password !
+        </Alert>
+        </Collapse>
           <Formik
             initialValues={{
               email: '',
@@ -93,11 +116,11 @@ const LoginView = () => {
                       navigate('/customer/dashboard', { replace: true });
                     }
                   } else {
-                  
+                    setOpen(true);
                   }
                 })
                 .catch(function (error) {
-                  
+                  setOpen(true);
                   console.log(error);
                 });
               
@@ -201,7 +224,7 @@ const LoginView = () => {
                   </Link>
                     </Typography>
                   </form>
-                </CardContent>
+              </CardContent>  
               </Card>
             )}
           </Formik>
