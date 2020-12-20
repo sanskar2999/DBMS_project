@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {useEffect,useState} from 'react';
 import clsx from 'clsx';
 import PropTypes from 'prop-types';
 import { Bar } from 'react-chartjs-2';
@@ -13,31 +13,90 @@ import {
   makeStyles,
   colors
 } from '@material-ui/core';
-import ArrowDropDownIcon from '@material-ui/icons/ArrowDropDown';
+import ArrowDropDownIcon from '@material-ui/icons/ArrowRight';
 import ArrowRightIcon from '@material-ui/icons/ArrowRight';
+import jwt_decode from "jwt-decode";
+import Loader from 'react-loader-spinner';
 
 const useStyles = makeStyles(() => ({
   root: {}
 }));
 
 const Sales = ({ className, ...rest }) => {
+  var role = "";
+  var email_id = "";
+  var decoded;
   const classes = useStyles();
+  const [certificates_list, setCertificates] = useState([]);
+  const [values, setLoading] = useState({
+    loading: true,
+  });
   const theme = useTheme();
+  var  months = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"];
+  var d = new Date();
+  var s=d.getMonth();
+  var i;
+  var monthnames=[];
+  for(i=0;i<6;i++){
+    if(s-i<0){
+      s=11;
+    }
+    monthnames.push(months[s]);
+    s--;
+  }
+
+  useEffect(() => {
+    role = localStorage.getItem('role');
+    console.log(role);
+    decoded = jwt_decode(localStorage.getItem('token'));
+    email_id = decoded.email;
+    console.log(email_id);
+    
+    fetch(`http://localhost:5000/${role}/${email_id}`)
+      .then(resp => resp.json())
+      .then(data => data.map(async(info) => {
+        await setCertificates(info.certificates);
+        setLoading({
+          loading:false
+        });
+      }))
+  },[])
+
+  var month_no;
+  var no_of_certificates=[0,0,0,0,0,0];
+
+    certificates_list.map((certificate)=>{
+      console.log(certificate)
+      s=d.getMonth()+1;
+     month_no = parseInt(certificate.substring(5,7));
+     console.log(month_no);
+     if(month_no==s){
+       no_of_certificates[0]++;
+     }else if(month_no==s-1){
+       no_of_certificates[1]++;
+     }else if(month_no==s-2){
+      no_of_certificates[2]++;
+    }else if(month_no==s-3){
+      no_of_certificates[3]++;
+    }
+    else if(month_no==s-4){
+      no_of_certificates[4]++;
+    }
+    else if(month_no==s-5){
+      no_of_certificates[5]++;
+    }
+    })
+  
 
   const data = {
     datasets: [
       {
         backgroundColor: colors.indigo[500],
-        data: [18, 5, 19, 27, 29, 19, 20],
-        label: 'This year'
+        data: [no_of_certificates[0],no_of_certificates[1], no_of_certificates[2], no_of_certificates[3], no_of_certificates[4], no_of_certificates[5]],
+        label: 'This month'
       },
-      {
-        backgroundColor: colors.grey[200],
-        data: [11, 20, 12, 29, 30, 25, 13],
-        label: 'Last year'
-      }
     ],
-    labels: ['20 Nov', '21 Nov', '22 Nov', '23 Nov', '24 Nov', '25 Nov']
+    labels: monthnames
   };
 
   const options = {
@@ -100,6 +159,7 @@ const Sales = ({ className, ...rest }) => {
       className={clsx(classes.root, className)}
       {...rest}
     >
+      
       <CardHeader
         action={(
           <Button
@@ -107,12 +167,14 @@ const Sales = ({ className, ...rest }) => {
             size="small"
             variant="text"
           >
-            Last 7 days
+            Last 6 months
           </Button>
         )}
-        title="CERTIFICATES GENERATED"
+        title={role=='admin'? "CERTIFICATES GENERATED": "CERTIFICATED EARNED"}
       />
       <Divider />
+      {values.loading?<Loader type="Audio" color="#00BFFF" height={80} width={80} style={{margin:300+"px"}} /> :
+
       <CardContent>
         <Box
           height={400}
@@ -124,6 +186,7 @@ const Sales = ({ className, ...rest }) => {
           />
         </Box>
       </CardContent>
+}
       <Divider />
       <Box
         display="flex"

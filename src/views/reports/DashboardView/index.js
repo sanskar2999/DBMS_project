@@ -88,7 +88,8 @@ const Dashboard = () => {
             xl={3}
             xs={12}
           >
-            <TrafficByDevice />
+            <LatestProducts />
+            
           </Grid>
           <Grid
             item
@@ -97,7 +98,7 @@ const Dashboard = () => {
             xl={3}
             xs={12}
           >
-            <LatestProducts />
+            {/* <TrafficByDevice /> */}
           </Grid>
           <Grid
             item
@@ -106,7 +107,6 @@ const Dashboard = () => {
             xl={9}
             xs={12}
           >
-            <LatestOrders />
           </Grid>
         </Grid>
       </Container>

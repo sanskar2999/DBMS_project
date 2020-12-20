@@ -33,7 +33,7 @@ const useStyles = makeStyles(theme => ({
     height: '100% ',
   },
   input: {
-    display: 'none',
+      display: 'none',
   },
   card: {
     justifyItems: 'center',
