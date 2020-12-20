@@ -68,7 +68,7 @@ const Sales = ({ className, ...rest }) => {
     certificates_list.map((certificate)=>{
       console.log(certificate)
       s=d.getMonth()+1;
-     month_no = parseInt(certificate.substring(5,7)) ;
+     month_no = parseInt(certificate.substring(5,7));
      console.log(month_no);
      if(month_no==s){
        no_of_certificates[0]++;
