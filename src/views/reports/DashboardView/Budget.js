@@ -44,6 +44,7 @@ const [values, setValues] = useState({
   no_users:0,
 });
 
+
   useEffect(() => {
     role = localStorage.getItem('role');
     console.log(role);
@@ -56,6 +57,7 @@ const [values, setValues] = useState({
       .then(data => data.map((info) => {
         setValues({
           no_users: info.certificates.length,
+          loading:false
         });
       }))
   },[])
