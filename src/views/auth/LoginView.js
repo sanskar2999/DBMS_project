@@ -1,4 +1,4 @@
-import React ,{useEffect} from 'react';
+import React ,{useEffect, useState} from 'react';
 import { Link as RouterLink, useNavigate } from 'react-router-dom';
 import * as Yup from 'yup';
 import { Formik } from 'formik';
@@ -41,8 +41,13 @@ const useStyles = makeStyles((theme) => ({
 
 const LoginView = () => {
   const classes = useStyles();
+  const [passwordShown, setPasswordShown] = useState(false);
   const navigate = useNavigate();
   var axios = require('axios');
+
+  const togglePasswordVisiblity = () => {
+    setPasswordShown(passwordShown ? false : true);
+  };
   
 
   return (
@@ -168,11 +173,11 @@ const LoginView = () => {
                       name="password"
                       onBlur={handleBlur}
                       onChange={handleChange}
-                      type="password"
+                      type={passwordShown ? "text" : "password"}
                       value={values.password}
                       variant="outlined"
                     />
-                    <input type="checkbox" onclick="passwordFunction()" style={{ marginRight: 5 + 'px'}} />
+                    <input type="checkbox" onClick={togglePasswordVisiblity} style={{ marginRight: 5 + 'px'}} />
                     <span>Show Password</span>
                     <Box my={2}>
                       <Button
