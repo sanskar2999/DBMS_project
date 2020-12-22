@@ -128,7 +128,6 @@ const LoginView = () => {
                   setOpen(true);
                   console.log(error);
                 });
-              
             }}
           >
             {({
