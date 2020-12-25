@@ -43,9 +43,7 @@ const TopBar = ({
     // useNavigate('/login', { replace: true });
     
     var url = '/login';
-    window.history.go(-window.history.length);
     window.location.href = url;
-    
   }
 
 
