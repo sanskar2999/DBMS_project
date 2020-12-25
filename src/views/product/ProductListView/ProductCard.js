@@ -52,6 +52,7 @@ const ProductCard = ({ className, product, ...rest }) => {
       className={clsx(classes.root, className)}
       {...rest}
     >
+      <a href={product.media} target="_blank">
       <CardContent>
         <Box
           display="flex"
@@ -82,6 +83,7 @@ const ProductCard = ({ className, product, ...rest }) => {
           {product.description}
         </Typography>
       </CardContent>
+      </a>
       <Box flexGrow={1} />
     </Card>
   );

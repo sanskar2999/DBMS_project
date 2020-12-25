@@ -92,6 +92,7 @@ const Results = ({ className, customers, ...rest }) => {
             </TableHead>
             <TableBody>
               {customers.slice(0, limit).map((customer) => (
+                
                 <TableRow
                   hover
                   key={customer.id}
@@ -103,12 +104,14 @@ const Results = ({ className, customers, ...rest }) => {
                       alignItems="center"
                       display="flex"
                     >
+                      <a href={customer.avatarUrl} target="_blank">
                       <Avatar
                         className={classes.avatar}
                         src={customer.avatarUrl}
                       >
                         {getInitials(customer.name)}
                       </Avatar>
+                      </a>
                       <Typography
                         color="textPrimary"
                         variant="body1"
