@@ -3,11 +3,17 @@ import Loader from 'react-loader-spinner';
 import {
   Box,
   Container,
-  makeStyles
+  makeStyles,
+  Card,
+  InputAdornment,
+  SvgIcon,
+  CardContent,
+  TextField,
 } from '@material-ui/core';
 import Page from 'src/components/Page';
 import Results from './Results';
 import Toolbar from './Toolbar';
+import { Search as SearchIcon } from 'react-feather';
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -22,6 +28,8 @@ var users = [];
 
 const CustomerListView = () => {
   const [users_list, setUsers] = useState([]);
+  // const [name_list, setNames] = useState([]);
+  const [searchvalue, setSearch]= useState('');
   const [values, setLoading] = useState({
     loading: true,
   });
@@ -42,9 +50,17 @@ const CustomerListView = () => {
     setUsers(users);
     setLoading({
       laoding:false,
-    })
+    });
   }))
 },[])
+
+function editSearchTerm(e){
+  setSearch(e.target.value);
+}
+
+function dynamicSearch(){
+  return users_list.filter(users=>users.name.toLowerCase().includes(searchvalue.toLowerCase()))
+}
   
 
   return (
@@ -53,9 +69,37 @@ const CustomerListView = () => {
       // title="Customers"
     >
       <Container maxWidth={false}>
-        <Toolbar />
+        {/* <Toolbar /> */}
         <Box mt={3}>
-          { values.loading ? <center><Loader type="ThreeDots" color="#00BFFF" height={80} width={80} style={{marginTop:100+"px"}} /></center> : <Results customers={users_list} />}
+        <Card>
+          <CardContent>
+            <Box maxWidth={500}>
+              <TextField
+                fullWidth
+                InputProps={{
+                  startAdornment: (
+                    <InputAdornment position="start">
+                      <SvgIcon
+                        fontSize="small"
+                        color="action"
+                      >
+                        <SearchIcon />
+                      </SvgIcon>
+                    </InputAdornment>
+                  )
+                }}
+                placeholder="Search for the Name!"
+                variant="outlined"
+                type='text'
+                value={searchvalue}
+                onChange={editSearchTerm}
+              />
+            </Box>
+          </CardContent>
+        </Card>
+      </Box>
+        <Box mt={3}>
+          { values.loading ? <center><Loader type="ThreeDots" color="#00BFFF" height={80} width={80} style={{marginTop:100+"px"}} /></center> : <Results customers={dynamicSearch()} />}
         </Box>
       </Container>
     </Page>
