@@ -10,6 +10,7 @@ import {
   Card,
   CardContent,
   Typography,
+  Modal,
   CardHeader,
 } from '@material-ui/core';
 import Page from 'src/components/Page';
@@ -57,9 +58,12 @@ export default class ProductList extends Component {
       image: null,
       imageList: [],
       loaded: false,
+      open: false,
     };
     this.onPick = this.onPick.bind(this);
     this.handlechange = this.handlechange.bind(this);
+    this.handleOpen = this.handleOpen.bind(this);
+    this.handleClose = this.handleClose.bind(this);
   }
   componentDidMount() {
     var templates = [];
@@ -108,11 +112,22 @@ export default class ProductList extends Component {
 
             reader.readAsDataURL(image)
           }
-            onPick(image){
+     onPick(image){
             this.setState({
               image: {image},
             })
           }
+     handleOpen = () => {
+            this.setState({
+               open:true,
+            })
+          };
+        
+    handleClose = () => {
+            this.setState({
+              open:false,
+            })
+        }
         
   render() {
     return (
@@ -150,6 +165,7 @@ export default class ProductList extends Component {
                 .catch(function(error) {
                   console.log(error);
                 });
+                this.handleOpen();
             }}
           >
             {({
@@ -243,6 +259,24 @@ export default class ProductList extends Component {
                     <br></br>
                   </form>
                 </CardContent>
+                <Modal
+                    open={this.state.open}
+                    onClose={this.handleClose}
+                    aria-labelledby="simple-modal-title"
+                    aria-describedby="simple-modal-description"
+                  >
+                    <div style={{  position: 'absolute', width: 700,  backgroundColor: "white", left: "40%", top: "40%", marginLeft: "-150px",marginTop: "-150px"}}>   
+                    <img src="https://image.freepik.com/free-vector/success-vector-illustration_1893-2234.jpg" style={{borderRadius: "8px" ,width: "100%",height: "auto"}}/>
+                        <p id="simple-modal-description">
+                        <div style={{ display:"flex", padding:"10px" }}>
+                          <Typography varient="h5" component="h5" style={{fontSize:"18px",justifyContent: 'center'}}>
+                                Congratulations certificate generated and email sent successfully !!!!
+                                </Typography> 
+                          </div>
+                              <br></br>
+                        </p>
+                      </div>
+                  </Modal>
               </Card>
             )}
           </Formik>
