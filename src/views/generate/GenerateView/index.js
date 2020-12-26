@@ -134,9 +134,15 @@ export default class ProductList extends Component {
       <Page style={{margin:"15px"}}>
         <Container maxWidth="xl">
           <Formik
+            initialValues={{
+              firstName: '',
+            }}
             onSubmit={value => {
+              if(this.state.image.image.src && file && this.state.signature )
+              {
               var  res = this.state.image.image.src.substring(21, this.state.image.image.src.length);
-              res="uploads"+res
+              res="uploads"+res;
+              console.log(res);
              if (localStorage.getItem('token') != null) {
                decoded = jwt_decode(localStorage.getItem('token'));
              }
@@ -166,6 +172,7 @@ export default class ProductList extends Component {
                   console.log(error);
                 });
                 this.handleOpen();
+              }
             }}
           >
             {({
@@ -259,7 +266,10 @@ export default class ProductList extends Component {
                     <br></br>
                   </form>
                 </CardContent>
-                <Modal
+              </Card>
+            )}
+          </Formik>
+                 <Modal
                     open={this.state.open}
                     onClose={this.handleClose}
                     aria-labelledby="simple-modal-title"
@@ -277,9 +287,6 @@ export default class ProductList extends Component {
                         </p>
                       </div>
                   </Modal>
-              </Card>
-            )}
-          </Formik>
         </Container>
       </Page>
     );
