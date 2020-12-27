@@ -1,4 +1,7 @@
 import React, { Component } from 'react';
+import { Link as RouterLink, useNavigate } from 'react-router-dom';
+
+
 import {
   Box,
   Container,
@@ -8,6 +11,7 @@ import {
   Button,
   IconButton,
   Card,
+  Link,
   CardContent,
   Typography,
   Modal,
@@ -65,22 +69,6 @@ export default class ProductList extends Component {
     this.handleOpen = this.handleOpen.bind(this);
     this.handleClose = this.handleClose.bind(this);
   }
-  componentDidMount() {
-    var templates = [];
-    fetch('http://localhost:5000/templates/')
-      .then(resp => resp.json())
-      .then(data =>
-        data.map(async images => {
-          var imageUrl = 'http://localhost:5000/' + images.url;
-          templates.push(imageUrl);
-          this.setState({
-            imageList: templates,
-            loaded: true,
-          });
-        })
-      );
-    // console.log(imageList)
-  }
 
   handlechange = event => {
     this.setState({
@@ -121,14 +109,38 @@ export default class ProductList extends Component {
             this.setState({
                open:true,
             })
+            
           };
         
     handleClose = () => {
-            this.setState({
-              open:false,
-            })
-        }
+
+      setTimeout(() => {
+        this.setState({
+          open:false,
+        })
+      }, 500);     
+         
+    }
         
+        componentDidMount() {
+          var templates = [];
+          fetch('http://localhost:5000/templates/')
+            .then(resp => resp.json())
+            .then(data =>
+              data.map(async images => {
+                var imageUrl = 'http://localhost:5000/' + images.url;
+                templates.push(imageUrl);
+                this.setState({
+                  imageList: templates,
+                  loaded: true,
+                });
+              })
+            );
+
+           
+          // console.log(imageList)
+          
+        }
   render() {
     return (
       <Page style={{margin:"15px"}}>
@@ -274,8 +286,9 @@ export default class ProductList extends Component {
                     onClose={this.handleClose}
                     aria-labelledby="simple-modal-title"
                     aria-describedby="simple-modal-description"
+                   
                   >
-                    <div style={{  position: 'absolute', width: 700,  backgroundColor: "white", left: "40%", top: "40%", marginLeft: "-150px",marginTop: "-150px"}}>   
+                    <div style={{  position: 'absolute', width: 700,  backgroundColor: "white", left: "40%", top: "30%", marginLeft: "-150px",marginTop: "-150px"}}>   
                     <img src="https://image.freepik.com/free-vector/success-vector-illustration_1893-2234.jpg" style={{borderRadius: "8px" ,width: "100%",height: "auto"}}/>
                         <p id="simple-modal-description">
                         <div style={{ display:"flex", padding:"10px" }}>
@@ -285,7 +298,28 @@ export default class ProductList extends Component {
                           </div>
                               <br></br>
                         </p>
-                      </div>
+                      
+                  
+
+                  <Link
+                      component={RouterLink}
+                      to="/app/dashboard"
+                      variant="h6"
+                    >
+                      <Box my={2} style={{ textAlign: 'center'}}>
+                      <Button
+                        color="secondary"
+                        halfWidth
+                        size="large"
+                        type="submit"
+                        variant="contained"
+                      >
+                        Close
+                      </Button>
+                    </Box>
+                  </Link>
+                  </div>
+
                   </Modal>
         </Container>
       </Page>
