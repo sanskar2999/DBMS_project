@@ -1,6 +1,10 @@
 import React, { useState, useEffect } from 'react';
 import Loader from 'react-loader-spinner';
 import {useNavigate } from 'react-router-dom';
+import Alert from '@material-ui/lab/Alert';
+import IconButton from '@material-ui/core/IconButton';
+import Collapse from '@material-ui/core/Collapse';
+import CloseIcon from '@material-ui/icons/Close';
 
 import {
   Box,
@@ -50,6 +54,7 @@ const ProductList = () => {
   const [open_value, setOpen]=useState({
     open:false,
   });
+  const [alert, setAlert]=React.useState(false);
   
   const classes = useStyles();
   useEffect(() => {
@@ -111,7 +116,6 @@ const ProductList = () => {
       console.log(file);
       var axios = require('axios');
       var FormData = require('form-data');
-      // var fs = require('fs');
       var data = new FormData();
       data.append('file', file);
       data.append('name', 'Template' + (items.length+1));
@@ -130,6 +134,9 @@ const ProductList = () => {
       .catch(function (error) {
         console.log(error);
       });
+  }else{
+    handleclose();
+    setAlert(true);
   }
 }
 
@@ -181,6 +188,24 @@ const ProductList = () => {
           </CardContent>
         </Card>
       </Box>
+      <Collapse in={alert}>
+        <Alert severity="error"
+              action={
+                <IconButton
+                  aria-label="close"
+                  color="inherit"
+                  size="small"
+                  onClick={() => {
+                    setAlert(false);
+                  }}
+                >
+                  <CloseIcon fontSize="inherit" />
+                </IconButton>
+              }
+            >
+             Error 000!!! No file Selected !
+        </Alert>
+        </Collapse>
         <Box mt={3}>
           {values.loading ? <center><Loader type="ThreeDots" color="#00BFFF" height={80} width={80} style={{marginTop:100+"px"}} /></center> :
             <Grid
