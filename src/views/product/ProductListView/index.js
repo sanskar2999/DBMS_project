@@ -1,5 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import Loader from 'react-loader-spinner';
+import {useNavigate } from 'react-router-dom';
+
 import {
   Box,
   Container,
@@ -10,8 +12,13 @@ import {
   TextField,
   InputAdornment,
   SvgIcon,
+  Button,
+  Modal,
+  Typography,
 } from '@material-ui/core';
-import { Pagination } from '@material-ui/lab';
+import logo from 'src/images/add.png';
+
+
 import Page from 'src/components/Page';
 import Toolbar from './Toolbar';
 import ProductCard from './ProductCard';
@@ -35,9 +42,13 @@ var templates = [];
 
 const ProductList = () => {
   const [items, setItems] = useState([]);
+  const navigate = useNavigate();
   const [searchvalue, setSearch]= useState('');
   const [values, setLoading] = useState({
     loading: true,
+  });
+  const [open_value, setOpen]=useState({
+    open:false,
   });
   
   const classes = useStyles();
@@ -46,6 +57,7 @@ const ProductList = () => {
     fetch('http://localhost:5000/templates/')
       .then(resp => resp.json())
       .then(data => data.map(async(images) => {
+
         console.log(images.url);
         await templates.push({
           id: '12',
@@ -68,6 +80,59 @@ const ProductList = () => {
     return items.filter(items=>items.title.toLowerCase().includes(searchvalue.toLowerCase()))
   }
 
+  function handlecheck(){
+    setOpen({
+      open:true,
+    })
+  }
+
+  function handleclose(){
+    setOpen({
+      open:false,
+    })
+  }
+  var file;
+
+ function _handleImageChange(e) {
+    e.preventDefault();
+
+    let reader = new FileReader();
+    let image = e.target.files[0];
+
+    reader.onloadend = () => {
+      file = image;
+    };
+
+    reader.readAsDataURL(image);
+  }
+
+  function addtodatabase(){
+    if(file!=null){
+      console.log(file);
+      var axios = require('axios');
+      var FormData = require('form-data');
+      // var fs = require('fs');
+      var data = new FormData();
+      data.append('file', file);
+      data.append('name', 'Template' + (items.length+1));
+      
+      var config = {
+        method: 'post',
+        url: 'http://localhost:5000/templates/add',
+        data : data
+      };
+      
+      axios(config)
+      .then(function (response) {
+        navigate('/app/dashboard', { replace: true });
+        console.log(JSON.stringify(response.data));
+      })
+      .catch(function (error) {
+        console.log(error);
+      });
+  }
+}
+
   return (
     <Page
       className={classes.root}
@@ -77,19 +142,17 @@ const ProductList = () => {
         display="flex"
         justifyContent="flex-end"
       >
-        {/* <Button className={classes.importButton}>
-          Import
-        </Button>
-        <Button className={classes.exportButton}>
-          Export
-        </Button>
+        
         <Button
           color="primary"
           variant="contained"
+          onClick={handlecheck}
         >
-          Add product
-        </Button> */}
+                  Add Template
+        </Button>
+        
       </Box>
+     
       <Box mt={3}>
         <Card>
           <CardContent>
@@ -150,10 +213,62 @@ const ProductList = () => {
             count={3}
             size="small"
           />
-        </Box> */}
+         */}
+        <Modal
+                    open={open_value.open}
+                    onClose={handleclose}
+                    aria-labelledby="simple-modal-title"
+                    aria-describedby="simple-modal-description"                   
+                    style={{borderRadius:8, marginBottom:100+"px"}}
+                  >
+                    <div style={{  position: 'absolute', width: 700,  backgroundColor: "white", left: "40%", top: "40%", marginLeft: "-150px",marginTop: "-150px"}}>  
+
+                   <center><img src={logo} alt='template placeholder' style={{borderRadius: "8px" ,width: "50%",height: "50%"}}/></center> 
+                        <p id="simple-modal-description">
+                        <div
+                        style={{
+                          
+                          marginBottom: 10 + 'px',
+                          marginLeft: 20 + 'px',
+                        }}
+                      >
+                     
+                          <Typography varient="h3" component="h3" style={{paddingTop:"20px",paddingBottom:"15px",fontSize:"20px"}}>Upload Template file :</Typography>
+                       
+                        <input
+                          accept="image/*"
+                          type="file"
+                          style={{ marginLeft: 10 + 'px' }}
+                          onChange={_handleImageChange}
+                          name="templatefile"
+                        />
+                        <br></br>
+                        <center>
+                        <Button
+          color="primary"
+          variant="contained"
+          onClick={addtodatabase}
+        
+        >
+                  Submit your Template
+        </Button></center>
+                      </div>
+                      
+                              <br></br>
+                             
+                        </p>
+                        
+                      </div>
+                      
+                      
+                  </Modal>  
+
+                  
       </Container>
+      
     </Page>
+    
   );
-};
+                      };
 
 export default ProductList;
