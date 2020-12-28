@@ -118,7 +118,7 @@ const ProductList = () => {
       var FormData = require('form-data');
       var data = new FormData();
       data.append('file', file);
-      data.append('name', 'Template' + (items.length+1));
+      data.append('name', 'Template ' + (items.length+1));
       
       var config = {
         method: 'post',
