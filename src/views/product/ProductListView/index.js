@@ -20,7 +20,7 @@ import {
   Modal,
   Typography,
 } from '@material-ui/core';
-import logo from 'src/images/add.png';
+import logo from 'src/images/cartoon.jpg';
 
 
 import Page from 'src/components/Page';
@@ -248,7 +248,7 @@ const ProductList = () => {
                   >
                     <div style={{  position: 'absolute', width: 700,  backgroundColor: "white", left: "40%", top: "40%", marginLeft: "-150px",marginTop: "-150px"}}>  
 
-                   <center><img src={logo} alt='template placeholder' style={{borderRadius: "8px" ,width: "50%",height: "50%"}}/></center> 
+                   <center><img src={logo} alt='template placeholder' style={{borderRadius: "8px" ,width: "40%",height: "40%"}}/></center> 
                         <p id="simple-modal-description">
                         <div
                         style={{
