@@ -1,7 +1,4 @@
 import React, { Component } from 'react';
-import { Link as RouterLink, useNavigate } from 'react-router-dom';
-
-
 import {
   Box,
   Container,
@@ -11,7 +8,6 @@ import {
   Button,
   IconButton,
   Card,
-  Link,
   CardContent,
   Typography,
   Modal,
@@ -23,6 +19,8 @@ import jwt_decode from 'jwt-decode';
 import ImagePicker from 'react-image-picker';
 import 'react-image-picker/dist/index.css';
 import Loader from 'react-loader-spinner';
+import logo from 'src/images/enjoy.jpg'
+
 
 const useStyles = makeStyles(theme => ({
   root: {
@@ -47,7 +45,24 @@ const useStyles = makeStyles(theme => ({
     margin: 'auto',
     marginTop: '50px',
   },
+  content: {
+    top: '35%',
+    left: '50%',
+    right: 'auto',
+    bottom: 'auto',
+    marginRight: '-50%',
+    width: '60%',
+    transform: 'translate(-40%, -10%)',
+  },
+  card:{
+    justifyItems:"center",
+    display: "block",
+    margin:"auto",
+  }
 }));
+
+
+
 
 var admin_emailId;
 var decoded;
@@ -68,6 +83,23 @@ export default class ProductList extends Component {
     this.handlechange = this.handlechange.bind(this);
     this.handleOpen = this.handleOpen.bind(this);
     this.handleClose = this.handleClose.bind(this);
+  }
+  
+  componentDidMount() {
+    var templates = [];
+    fetch('http://localhost:5000/templates/')
+      .then(resp => resp.json())
+      .then(data =>
+        data.map(async images => {
+          var imageUrl = 'http://localhost:5000/' + images.url;
+          templates.push(imageUrl);
+          this.setState({
+            imageList: templates,
+            loaded: true,
+          });
+        })
+      );
+    // console.log(imageList)
   }
 
   handlechange = event => {
@@ -109,38 +141,14 @@ export default class ProductList extends Component {
             this.setState({
                open:true,
             })
-            
           };
         
     handleClose = () => {
-
-      setTimeout(() => {
-        this.setState({
-          open:false,
-        })
-      }, 500);     
-         
-    }
-        
-        componentDidMount() {
-          var templates = [];
-          fetch('http://localhost:5000/templates/')
-            .then(resp => resp.json())
-            .then(data =>
-              data.map(async images => {
-                var imageUrl = 'http://localhost:5000/' + images.url;
-                templates.push(imageUrl);
-                this.setState({
-                  imageList: templates,
-                  loaded: true,
-                });
-              })
-            );
-
-           
-          // console.log(imageList)
-          
+            this.setState({
+              open:false,
+            })
         }
+        
   render() {
     return (
       <Page style={{margin:"15px"}}>
@@ -178,6 +186,7 @@ export default class ProductList extends Component {
 
               axios(config)
                 .then(function(response) {
+                  
                   console.log(JSON.stringify(response.data));
                 })
                 .catch(function(error) {
@@ -199,6 +208,7 @@ export default class ProductList extends Component {
               <Card >
                 <CardContent>
                   <Typography variant="h2" component="h2" style={{textAlign:"center"}}>
+                    <br></br>
                     Generate Certificates
                   </Typography>
                   <form onSubmit={handleSubmit}>
@@ -264,7 +274,7 @@ export default class ProductList extends Component {
                     <Box my={2} style={{ textAlign: 'center'}}>
                       <Button
                         color="primary"
-                        disabled={isSubmitting}
+                        onClick={isSubmitting}
                         halfWidth
                         size="large"
                         type="submit"
@@ -286,40 +296,25 @@ export default class ProductList extends Component {
                     onClose={this.handleClose}
                     aria-labelledby="simple-modal-title"
                     aria-describedby="simple-modal-description"
-                   
+                    className={useStyles.content}
+                    style={{borderRadius:8}}
                   >
-                    <div style={{  position: 'absolute', width: 700,  backgroundColor: "white", left: "40%", top: "30%", marginLeft: "-150px",marginTop: "-150px"}}>   
-                    <img src="https://image.freepik.com/free-vector/success-vector-illustration_1893-2234.jpg" style={{borderRadius: "8px" ,width: "100%",height: "auto"}}/>
+                    <Card className={useStyles.card} >
+                  
+                    <div style={{  position: 'absolute', width: 700,  backgroundColor: "white", left: "40%", top: "40%", marginLeft: "-150px",marginTop: "-150px", marginBottom:"120px"}}>   
+                    <img src={logo} style={{borderRadius: "8px" ,width: "100%",height: "auto"}}/>
                         <p id="simple-modal-description">
                         <div style={{ display:"flex", padding:"10px" }}>
-                          <Typography varient="h5" component="h5" style={{fontSize:"18px",justifyContent: 'center'}}>
-                                Congratulations certificate generated and email sent successfully !!!!
+                          <Typography varient="h5" component="h5" style={{fontSize:"18px",justifyContent: 'center', flex:'center'}}>
+                             Congratulations certificate generated and email sent successfully !!!!
+                            
                                 </Typography> 
                           </div>
                               <br></br>
                         </p>
+                      </div>
                       
-                  
-
-                  <Link
-                      component={RouterLink}
-                      to="/app/dashboard"
-                      variant="h6"
-                    >
-                      <Box my={2} style={{ textAlign: 'center'}}>
-                      <Button
-                        color="secondary"
-                        halfWidth
-                        size="large"
-                        type="submit"
-                        variant="contained"
-                      >
-                        Close
-                      </Button>
-                    </Box>
-                  </Link>
-                  </div>
-
+                      </Card>
                   </Modal>
         </Container>
       </Page>
