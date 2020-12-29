@@ -62,7 +62,9 @@ const LatestProducts = ({ className, ...rest }) => {
     
   }))
 },[])
-  items.length = 5;
+  if(items.length>5){
+    items.length=5;
+  }
 
   return (
     <Card
@@ -71,7 +73,7 @@ const LatestProducts = ({ className, ...rest }) => {
     >
       <CardHeader
         subtitle={`${items.length} in total`}
-        title="LATEST 5 TEMPLATES "
+        title={`LATEST ${items.length} TEMPLATE`}
       />
       <Divider />
       {values.loading? <center><Loader type="ThreeDots" color="#00BFFF" height={80} width={80} style={{margin:100+"px"}} /></center> : 
