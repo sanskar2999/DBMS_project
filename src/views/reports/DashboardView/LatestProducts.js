@@ -3,6 +3,7 @@ import clsx from 'clsx';
 import PropTypes from 'prop-types';
 import { v4 as uuid } from 'uuid';
 import moment from 'moment';
+import { useNavigate } from 'react-router-dom';
 import Loader from 'react-loader-spinner';
 import {
   Box,
@@ -19,39 +20,6 @@ import {
 } from '@material-ui/core';
 import MoreVertIcon from '@material-ui/icons/MoreVert';
 import ArrowRightIcon from '@material-ui/icons/ArrowRight';
-
-const data = [
-  {
-    id: uuid(),
-    name: 'Template 1',
-    imageUrl: '/static/images/products/Certificate1.jpeg',
-    updatedAt: moment().subtract(2, 'hours')
-  },
-  {
-    id: uuid(),
-    name: 'Template 2',
-    imageUrl: '/static/images/products/Certificate2.jpeg',
-    updatedAt: moment().subtract(2, 'hours')
-  },
-  {
-    id: uuid(),
-    name: 'Template 3',
-    imageUrl: '/static/images/products/Certificate3.png',
-    updatedAt: moment().subtract(3, 'hours')
-  },
-  {
-    id: uuid(),
-    name: 'Template 4',
-    imageUrl: '/static/images/products/Certificate4.png',
-    updatedAt: moment().subtract(5, 'hours')
-  },
-  {
-    id: uuid(),
-    name: 'Template 5',
-    imageUrl: '/static/images/products/Certificate5.png',
-    updatedAt: moment().subtract(9, 'hours')
-  }
-];
 
 const useStyles = makeStyles(({
   root: {
@@ -70,6 +38,9 @@ const LatestProducts = ({ className, ...rest }) => {
   const [values, setLoading] = useState({
     loading: true,
   });
+  const navigate = useNavigate();
+
+  
 
   const classes = useStyles();
   useEffect(() => {
@@ -141,6 +112,9 @@ const LatestProducts = ({ className, ...rest }) => {
           endIcon={<ArrowRightIcon />}
           size="small"
           variant="text"
+          onClick={(()=>{
+            navigate('/app/templates', { replace: true })
+          })}
         >
           View all
         </Button>
