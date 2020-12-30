@@ -39,7 +39,7 @@ const CustomerListView = () => {
     users=[];
   fetch('http://localhost:5000/customer/')
   .then(resp => resp.json())
-  .then(data => data.map( async (list)=>{
+  .then(data => data.map(async (list)=>{
       await users.push({
           id: '12',
           avatarUrl: 'http://localhost:5000/'+list.image,
@@ -49,7 +49,7 @@ const CustomerListView = () => {
       })
     setUsers(users);
     setLoading({
-      laoding:false,
+      loading:false,
     });
   }))
 },[])

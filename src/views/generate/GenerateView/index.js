@@ -88,26 +88,6 @@ export default class ProductList extends Component {
     this.handleOpen = this.handleOpen.bind(this);
     this.handleClose = this.handleClose.bind(this);
   }
-<<<<<<< HEAD
-=======
-  
-  componentDidMount() {
-    var templates = [];
-    fetch('http://localhost:5000/templates/')
-      .then(resp => resp.json())
-      .then(data =>
-        data.map(async images => {
-          var imageUrl = 'http://localhost:5000/' + images.url;
-          templates.push(imageUrl);
-          this.setState({
-            imageList: templates,
-            loaded: true,
-          });
-        })
-      );
-    // console.log(imageList)
-  }
->>>>>>> 978ec20c182933eb5e4e5564b64b83a5dce0c8be
 
   handlechange = event => {
     this.setState({
@@ -327,20 +307,10 @@ export default class ProductList extends Component {
                     onClose={this.handleClose}
                     aria-labelledby="simple-modal-title"
                     aria-describedby="simple-modal-description"
-<<<<<<< HEAD
                    
                   >
                     <div style={{  position: 'absolute', width: 700,  backgroundColor: "white", left: "40%", top: "30%", marginLeft: "-150px",marginTop: "-150px"}}>   
                     <img src="https://image.freepik.com/free-vector/success-vector-illustration_1893-2234.jpg" style={{borderRadius: "8px" ,width: "100%",height: "auto"}}/>
-=======
-                    className={useStyles.content}
-                    style={{borderRadius:8}}
-                  >
-                    <Card className={useStyles.card} >
-                  
-                    <div style={{  position: 'absolute', width: 700,  backgroundColor: "white", left: "40%", top: "40%", marginLeft: "-150px",marginTop: "-150px", marginBottom:"120px"}}>   
-                    <img src={logo} style={{borderRadius: "8px" ,width: "100%",height: "auto"}}/>
->>>>>>> 978ec20c182933eb5e4e5564b64b83a5dce0c8be
                         <p id="simple-modal-description">
                         <div style={{ display:"flex", padding:"10px" }}>
                           <Typography varient="h5" component="h5" style={{fontSize:"18px",justifyContent: 'center', flex:'center'}}>
@@ -350,7 +320,6 @@ export default class ProductList extends Component {
                           </div>
                               <br></br>
                         </p>
-<<<<<<< HEAD
                       
                   
 
@@ -373,11 +342,6 @@ export default class ProductList extends Component {
                   </Link>
                   </div>
 
-=======
-                      </div>
-                      
-                      </Card>
->>>>>>> 978ec20c182933eb5e4e5564b64b83a5dce0c8be
                   </Modal>
         </Container>
       </Page>
