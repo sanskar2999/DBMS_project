@@ -104,6 +104,7 @@ const LatestProducts = ({ className, ...rest }) => {
       </List>
 }
       <Divider />
+      {localStorage.getItem('role')=='admin'?
       <Box
         display="flex"
         justifyContent="flex-end"
@@ -121,6 +122,8 @@ const LatestProducts = ({ className, ...rest }) => {
           View all
         </Button>
       </Box>
+      :
+      <container></container>}
     </Card>
   );
 };
