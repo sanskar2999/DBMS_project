@@ -23,11 +23,11 @@ const useStyles = makeStyles(() => ({
 }));
 
 const Sales = ({ className, ...rest }) => {
-  var role = "";
   var email_id = "";
   var decoded;
   const classes = useStyles();
   const [certificates_list, setCertificates] = useState([]);
+  const [role ,setrole] = useState();
   const [values, setLoading] = useState({
     loading: true,
   });
@@ -46,13 +46,13 @@ const Sales = ({ className, ...rest }) => {
   }
 
   useEffect(() => {
-    role = localStorage.getItem('role');
+    setrole(localStorage.getItem('role'));
     console.log(role);
     decoded = jwt_decode(localStorage.getItem('token'));
     email_id = decoded.email;
     console.log(email_id);
     
-    fetch(`http://localhost:5000/${role}/${email_id}`)
+    fetch(`http://localhost:5000/${localStorage.getItem('role')}/${email_id}`)
       .then(resp => resp.json())
       .then(data => data.map(async(info) => {
         await setCertificates(info.certificates);
@@ -200,20 +200,6 @@ const Sales = ({ className, ...rest }) => {
       </CardContent>
 }
       <Divider />
-      <Box
-        display="flex"
-        justifyContent="flex-end"
-        p={2}
-      >
-        <Button
-          color="primary"
-          endIcon={<ArrowRightIcon />}
-          size="small"
-          variant="text"
-        >
-          Overview
-        </Button>
-      </Box>
     </Card>
   );
 };
