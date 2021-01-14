@@ -86,7 +86,7 @@ export default ({
       heading: "Learning must not be stopped",
       quote:
         "Learning make the men perfect, Learning must be continued wherever you are ",
-      customerName: "Sambhav K Bhandari",
+      customerName: "Sanskar Agrawal",
       customerTitle: "Team Member"
     },
     {
@@ -95,7 +95,7 @@ export default ({
       heading: " Teamwork makes a huge success ",
       quote:
         "Coming together is a beginning. Keeping together is progress. Working together is success.",
-      customerName: "Sanskar Agrawal",
+      customerName: "Shivam",
       customerTitle: "Team Member"
     },
     {
@@ -104,7 +104,7 @@ export default ({
       heading: "Makes Everything Perfect",
       quote:
         "We think, mistakenly, that success is the result of the amount of time we put in at work, instead of the quality of time we put in",
-        customerName: "Shivam",
+        customerName: "Sambhav K Bhandari",
       customerTitle: "Team Member"
     }
   ]

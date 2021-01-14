@@ -61,7 +61,7 @@ export default () => {
             <SocialLink href="https://mail.google.com/mail/?view=cm&fs=1&tf=1&to=certifyus2020@gmail.com&body=*Enter the problem you are facing*">
               <FacebookIcon />
             </SocialLink>
-            <SocialLink href="tel:6261999236">
+            <SocialLink href="tel:9517337302">
               <TwitterIcon />
             </SocialLink>
             
