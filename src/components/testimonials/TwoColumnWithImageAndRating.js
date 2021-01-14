@@ -82,7 +82,7 @@ export default ({
   textOnLeft = false,
   testimonials = [
     {
-      profileImageSrc:Image1,
+      profileImageSrc:Image2,
       heading: "Learning must not be stopped",
       quote:
         "Learning make the men perfect, Learning must be continued wherever you are ",
@@ -91,7 +91,7 @@ export default ({
     },
     {
     
-      profileImageSrc:Image2,
+      profileImageSrc:Image3,
       heading: " Teamwork makes a huge success ",
       quote:
         "Coming together is a beginning. Keeping together is progress. Working together is success.",
@@ -100,7 +100,7 @@ export default ({
     },
     {
     
-      profileImageSrc:Image3,
+      profileImageSrc:Image1,
       heading: "Makes Everything Perfect",
       quote:
         "We think, mistakenly, that success is the result of the amount of time we put in at work, instead of the quality of time we put in",
