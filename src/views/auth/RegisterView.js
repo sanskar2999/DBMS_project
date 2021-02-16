@@ -249,7 +249,7 @@ const RegisterView = () => {
                   </FormControl>
                   <div style={{ display:"flex", padding:"10px" }}>
                 <span> <Typography varient="h5" component="h5" style={{fontSize:"18px"}}>
-                       UPLOAD YOUR PROFILE PICTURE : 
+                       Upload Your Profile Picture : 
                       </Typography> </span> 
                     <input
                       accept="image/*"
