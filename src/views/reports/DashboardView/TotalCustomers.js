@@ -13,6 +13,7 @@ import {
 } from '@material-ui/core';
 import ArrowUpwardIcon from '@material-ui/icons/ArrowUpward';
 import PeopleIcon from '@material-ui/icons/PeopleOutlined';
+import jwt_decode from "jwt-decode";
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -37,9 +38,11 @@ const TotalCustomers = ({ className, ...rest }) => {
   const [values, setValues] = useState({
     no_users:0,
   });
+ const [role ,setrole] = useState();
   
     useEffect(() => {
-      fetch('http://localhost:5000/user')
+      setrole(localStorage.getItem('role'));
+      fetch('http://localhost:5000/customer')
         .then(resp => resp.json())
         .then(data => {
           setValues({
@@ -65,7 +68,7 @@ const TotalCustomers = ({ className, ...rest }) => {
               gutterBottom
               variant="h6"
             >
-              TOTAL USERS
+              {role=='admin'?'TOTAL CUSTOMER': 'OTHER USERS'}
             </Typography>
             <Typography
               color="textPrimary"

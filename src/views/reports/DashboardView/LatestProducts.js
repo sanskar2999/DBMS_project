@@ -97,7 +97,7 @@ const LatestProducts = ({ className, ...rest }) => {
               edge="end"
               size="small"
             >
-              <MoreVertIcon />
+              {/* <MoreVertIcon /> */}
             </IconButton>
           </ListItem>
         ))}
