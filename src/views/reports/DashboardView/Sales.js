@@ -36,9 +36,11 @@ const Sales = ({ className, ...rest }) => {
   var d = new Date();
   var s=d.getMonth();
   var i;
+  console.log('month');
+  console.log(s);
   var monthnames=[];
   for(i=0;i<6;i++){
-    if(s-i<0){
+    if(s<0){
       s=11;
     }
     monthnames.push(months[s]);
