@@ -60,7 +60,7 @@ const TopBar = ({
         <Name className="classes.name" />
         <Box flexGrow={1} />
         <Hidden mdDown>
-          <IconButton color="inherit">
+          {/* <IconButton color="inherit">
             <Badge
               badgeContent={notifications.length}
               color="secondary"
@@ -68,7 +68,7 @@ const TopBar = ({
             >
               <NotificationsIcon />
             </Badge>
-          </IconButton>
+          </IconButton> */}
           <IconButton 
               color="inherit"
               onClick={logout}

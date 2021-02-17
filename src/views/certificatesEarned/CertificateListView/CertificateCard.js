@@ -53,6 +53,7 @@ const CertificateCard = ({ className, product, ...rest }) => {
       {...rest}
     >
       <CardContent>
+        <a href={product.media} target="_blank">
         <Box
           display="flex"
           justifyContent="center"
@@ -66,6 +67,7 @@ const CertificateCard = ({ className, product, ...rest }) => {
             width='400'
           />
         </Box>
+        </a>
         <Typography
           align="center"
           color="textPrimary"
