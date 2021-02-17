@@ -68,7 +68,7 @@ const TotalCustomers = ({ className, ...rest }) => {
               gutterBottom
               variant="h6"
             >
-              {role=='admin'?'TOTAL CUSTOMER': 'OTHER USERS'}
+              {role=='admin'?'CUSTOMERS': 'OTHER USERS'}
             </Typography>
             <Typography
               color="textPrimary"
