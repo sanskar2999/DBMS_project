@@ -1,4 +1,4 @@
-import React, { useState , useEffect } from 'react';
+import React, { useState , useEffect, Redirect } from 'react';
 import clsx from 'clsx';
 import PropTypes from 'prop-types';
 import {
@@ -74,6 +74,7 @@ const ProfileDetails = ({ className, ...rest }) => {
 
   const handleClose = () => {
     setOpen(false);
+    window.location.reload();
   };
 
   function updateProfile(){
