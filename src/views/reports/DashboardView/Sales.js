@@ -66,39 +66,18 @@ const Sales = ({ className, ...rest }) => {
 
   var month_no;
   var no_of_certificates=[0,0,0,0,0,0];
+  var index;
 
     certificates_list.map((certificate)=>{
       console.log(certificate)
-      s=d.getMonth()+1;
-      console.log(s);
+      s=d.getMonth();
+
      month_no = parseInt(certificate.substring(5,7));
      console.log(month_no);
-  
-     if(month_no==s){
-       no_of_certificates[0]++;
-     }else if(s-1==0){
-       s=13;
-       if(month_no==s-1)
-       no_of_certificates[1]++;
-     }else if(s-2==0){
-       s=13;
-       if(month_no==s-2)
-      no_of_certificates[2]++;
-    }else if(s-3==0){
-      s=13;
-      if(month_no==s-3)
-      no_of_certificates[3]++;
-    }
-    else if(s-4==0){
-      s=13;
-      if(month_no==s-4)
-      no_of_certificates[4]++;
-    }
-    else if(s-5==0){
-      s=13;
-      if(month_no==s-5)
-      no_of_certificates[5]++;
-    }
+     index=monthnames.indexOf(months[month_no-1]);
+     console.log("month No.");
+     console.log(index);
+     no_of_certificates[index]++;
     })
   
 
