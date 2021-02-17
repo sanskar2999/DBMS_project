@@ -116,6 +116,7 @@ const Profile = ({ className, ...rest }) => {
     .then(function (response) {
       console.log(JSON.stringify(response.data));
       setOpen(false);
+      window.location.reload();
     })
     .catch(function (error) {
       console.log(error);
